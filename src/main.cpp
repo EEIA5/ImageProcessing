@@ -1,14 +1,3 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-#include <iostream>
-#include <math.h>
-#include <string.h>
-
-using namespace cv;
-using namespace std;
-
 char* windowCamera="Camera";
 char* windowCanny="Canny";
 
@@ -108,5 +97,3 @@ int main()
     waitKey();
     return 0;
 }
-
-
