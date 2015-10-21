@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(ImageProcessing)
-find_package(OpenCV 3.0.0 REQUIRED)
+find_package(OpenCV REQUIRED)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES src/main.cpp)
