@@ -12,8 +12,8 @@ char* windowCamera="Camera";
 char* windowCanny="Canny";
 char* windowRubicCube="Cube";
 
-int tresholdCannyOne=300;
-int tresholdCannyTwo=100;
+int tresholdCannyOne=50;
+int tresholdCannyTwo=50;
 
 void drawSquares( Mat& image, const vector<vector<Point > >& squares );
 void findSquares( const Mat& image, vector<vector<Point> > &squares);
@@ -77,7 +77,7 @@ void drawSquares( Mat& image, const vector<vector<Point > >& squares )
     }
     circle(image,Point(maxX,maxY),2,Scalar(255,255,0)); //rysuje prawy dolny róg kostki
     circle(image,Point(minX,minY),2,Scalar(0,255,255)); //rysuje lewy górny róg kostki
-    if (minX+abs(maxX-minX)< imageSize.width-1 && minY+abs(maxY-minY)< imageSize.height-1 ){
+    if (minX+abs(maxX-minX)< imageSize.width-1 && minY+abs(maxY-minY)< imageSize.height-1  && abs(abs(maxX - minX )-abs(maxY-minY)) <10 ){
         Mat dst = image(Rect(minX,minY,abs(maxX-minX),abs(maxY-minY))).clone();
         imshow(windowRubicCube,dst);
     }
@@ -102,7 +102,7 @@ void findSquares( const Mat& image, vector<vector<Point> > &squares){
             approxPolyDP(Mat(contours[contoure]), approxs, arcLength(Mat(contours[contoure]), true)*0.02, true);
             area = contourArea(Mat(approxs));
 
-            if( approxs.size() == 4 && area > 1000 ){
+            if( approxs.size() == 4 && area > 2500 ){
                 squares.push_back(approxs);
             }
         }
