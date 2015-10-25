@@ -86,7 +86,7 @@ bool CubeDetector::init(){
     namedWindow( windowRubicCube, WINDOW_AUTOSIZE );
 
     videoCapture = new VideoCapture(0);
-    if (!videoCapture->isOpened()if (height!= 0 && width !=0){) {
+    if (!videoCapture->isOpened()) {
         cout << "Failed to open a video device!\nInitialization failed!" << endl;
         return false;
     }
@@ -94,7 +94,7 @@ bool CubeDetector::init(){
     return true;
 }
 
-int CubeDetector::detectSide(){if (height!= 0 && width !=0){
+int CubeDetector::detectSide(){
     Size cubeSize = cube.size();
     int height=cubeSize.height;
     int width=cubeSize.width;

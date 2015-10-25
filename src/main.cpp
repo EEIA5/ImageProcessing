@@ -12,7 +12,3 @@ int main(int argc,char*argv[]){
         cout<<"Side: "<<cubeDetector.detectSide()<<endl;
     }
 }
-
-
-
-
