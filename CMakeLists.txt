@@ -6,12 +6,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES 
 	src/main.cpp
-	src/CubeDetector.cpp)
-
-set(HEADER_FILES
+	src/CubeDetector.cpp
 	include/CubeDetector.h)
 
-add_executable(ImageProcessing ${SOURCE_FILES} ${HEADER_FILES})
+include_directories("${CMAKE_SOURCE_DIR}/include")
+
+add_executable(ImageProcessing ${SOURCE_FILES})
 
 target_link_libraries(ImageProcessing
 ${OpenCV_LIBS}
