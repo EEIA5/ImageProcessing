@@ -73,12 +73,12 @@ void CubeDetector::drawCube(){
     }
 
     if (minX+abs(maxX-minX)< imageSize.width-1 && minY+abs(maxY-minY)< imageSize.height-1  && abs(abs(maxX - minX )-abs(maxY-minY)) <10 ){
-        Mat dst = frame(Rect(minX,minY,abs(maxX-minX),abs(maxY-minY))).clone();
-        imshow(windowRubicCube,dst);
+        cube.release();
+        cube = frame(Rect(minX,minY,abs(maxX-minX),abs(maxY-minY))).clone();
+        imshow(windowRubicCube,cube);
     }
     imshow(windowCamera, frame);
 }
-
 
 bool CubeDetector::init(){
     namedWindow( windowCamera, WINDOW_AUTOSIZE );
@@ -86,10 +86,61 @@ bool CubeDetector::init(){
     namedWindow( windowRubicCube, WINDOW_AUTOSIZE );
 
     videoCapture = new VideoCapture(0);
-    if (!videoCapture->isOpened()) {
+    if (!videoCapture->isOpened()if (height!= 0 && width !=0){) {
         cout << "Failed to open a video device!\nInitialization failed!" << endl;
         return false;
     }
     cout<<"Initialization success!\nPress q to exit!\n"<<endl;
     return true;
+}
+
+int CubeDetector::detectSide(){if (height!= 0 && width !=0){
+    Size cubeSize = cube.size();
+    int height=cubeSize.height;
+    int width=cubeSize.width;
+    return getColor(width/2,height/2);
+}
+
+int CubeDetector::getColor(int x,int y){
+    Mat HSV;
+    int d=4;
+    int sumH=0,sumS=0,sumV=0;
+    if (x!= 0 && y !=0){
+        vector<Vec3b> colors;
+        Mat RGB=cube(Rect(x,y,1,1));
+        cvtColor(RGB, HSV,CV_BGR2HSV);
+        colors.push_back(HSV.at<Vec3b>(0,0));
+        RGB=cube(Rect(x-d,y-d,1,1));
+        cvtColor(RGB, HSV,CV_BGR2HSV);
+        colors.push_back(HSV.at<Vec3b>(0,0));
+        RGB=cube(Rect(x+d,y+d,1,1));
+        cvtColor(RGB, HSV,CV_BGR2HSV);
+        colors.push_back(HSV.at<Vec3b>(0,0));
+
+        for (unsigned i = 0; i<colors.size(); i++){
+            sumH+=int(colors[i][0]); sumS+=int(colors[i][1]); sumV+=int(colors[i][2]);
+        }
+
+        Vec3b color=HSV.at<Vec3b>(0,0);
+        color[0]=sumH/colors.size();
+        color[1]=sumS/colors.size();
+        color[2]=sumV/colors.size();
+
+        if ((color[0]<6 || color[0]>=150) && color[1]>70 && color[1]<180){
+            return RED;
+        } else if (color[0]>=6 && color[0]<25 && color[1]>70){
+            return ORANGE;
+        } else if (color[0]>=25 && color[0]<75 && color[1]>70 && color[1]<100){
+            return YELLOW;
+        } else if (color[0]>=75 && color[0]<100 && color[1]>150){
+            return GREEN;
+        } else if (color[0]>=100 && color[0]<150 && color[1]>150){
+            return BLUE;
+        } else if (color[1]<30){
+            return WHITE;
+        } else{
+            return UNDEF;
+        }
+    }
+    return UNDEF;
 }

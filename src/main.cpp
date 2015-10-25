@@ -9,6 +9,7 @@ int main(int argc,char*argv[]){
         cubeDetector.getFrame();
         cubeDetector.findCube();
         cubeDetector.drawCube();
+        cout<<"Side: "<<cubeDetector.detectSide()<<endl;
     }
 }
 
