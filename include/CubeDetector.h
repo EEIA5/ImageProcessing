@@ -27,16 +27,16 @@ class CubeDetector
         string windowCamera;
         string windowCanny;
         string windowRubicCube;
-        CubeDetector();
-        virtual ~CubeDetector();
         bool init();
         void getFrame();
         void findCube();
-        void drawCube();
+        void updateCubeWindow();
         bool isWorking();
-
-        void updateColors(int site);
         int detectSide();
+        void getColors(int*side);
+        CubeDetector();
+        virtual ~CubeDetector();
+        void print(int * colors);
     private:
         int getColor(int x, int y);
         vector<vector<Point > > squares;
