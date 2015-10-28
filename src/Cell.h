@@ -1,14 +1,22 @@
-//
-// Created by domin_000 on 25.10.2015.
-//
+#pragma once
+#include<string>
+#include<cv.h>
+using namespace cv;
+class Cell
+{
+public:
+	Cell();
+	Cell(std::string name);
+	~Cell();
+	void setColor(cv::Scalar color);
+	cv::Scalar getColor();
+	cv::Scalar getHSVmin();
+	cv::Scalar getHSVmax();
 
-#ifndef IMAGEPROCESSING_CELL_H
-#define IMAGEPROCESSING_CELL_H
-
-
-class Cell {
-
+	void setHSVmin(cv::Scalar min);
+	void setHSVmax(cv::Scalar max);
+private:
+	cv::Scalar color;
+	cv::Scalar HSVmin, HSVmax;
 };
 
-
-#endif //IMAGEPROCESSING_CELL_H
