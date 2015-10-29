@@ -16,6 +16,9 @@ const int ORANGE = 4;
 const int BLUE = 5;
 const int UNDEF = 6;
 
+const int NumberOfSides = 7;
+const int NumberOfSquaresOnSide=9;
+
 using namespace std;
 using namespace cv;
 
@@ -27,16 +30,16 @@ class CubeDetector
         string windowCamera;
         string windowCanny;
         string windowRubicCube;
-        bool init();
+        int** init();
         void getFrame();
         void findCube();
         void updateCubeWindow();
         bool isWorking();
         int detectSide();
-        void getColors(int*side);
+        void getColors(int**side);
         CubeDetector();
         virtual ~CubeDetector();
-        void print(int * colors);
+        void print(int ** sides);
     private:
         int getColor(int x, int y);
         vector<vector<Point > > squares;
