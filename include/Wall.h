@@ -9,6 +9,7 @@ class Wall
 {
 public:
     Wall(Cell cells[6]);
+	Wall();
     ~Wall();
 private:
     Cell cells[6];

@@ -4,7 +4,7 @@ int main(int argc,char*argv[]){
 
     CubeDetector cubeDetector;
     int **sides=cubeDetector.init();
-    if (sides==NULL)
+    if (sides== nullptr)
         return -1;
     while (cubeDetector.isWorking()){
         cubeDetector.getFrame();

@@ -6,11 +6,11 @@ CubeDetector::CubeDetector(){
     windowCamera="Camera";
     windowCanny="Canny";
     windowRubicCube="Cube";
-    videoCapture=NULL;
+    videoCapture= nullptr;
 }
 
 CubeDetector::~CubeDetector(){
-    if (videoCapture!=NULL)
+    if (videoCapture!= nullptr)
     delete videoCapture;
 }
 
@@ -22,7 +22,7 @@ void CubeDetector::getFrame(){
 }
 
 bool CubeDetector::isWorking(){
-    char key = (char)waitKey(5);
+	auto key = static_cast<char>(waitKey(5));
         if (key=='q'){
             return false;
         }
@@ -53,13 +53,13 @@ void CubeDetector::findCube(){
 }
 
 void CubeDetector::updateCubeWindow(){
-    Size imageSize = frame.size();
+	auto imageSize = frame.size();
     int minY=imageSize.height;
     int minX=imageSize.width;
     int maxX=0,maxY=0;
     for( unsigned i = 0; i < squares.size(); i++ )
     {
-        int n = (int)squares[i].size();
+        int n = static_cast<int>(squares[i].size());
         for (int square=0;square<n;square++){
             if (squares[i][square].x > maxX)
                 maxX=squares[i][square].x;
@@ -139,7 +139,7 @@ int CubeDetector::getColor(int x,int y){
         short whiteLv = 50;
         short blackLv = 70;
         if (color[0]<179 && color[0]>=160 && color[1]>whiteLv && color[2]>blackLv ){
-            return RED;
+			return RED;
         } else if (color[0]>=0 && color[0]<22 && color[1]>whiteLv && color[2]>blackLv ){
             return ORANGE;
         } else if (color[0]>=22 && color[0]<38 && color[1]>whiteLv && color[2]>blackLv ){

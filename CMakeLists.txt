@@ -8,13 +8,12 @@ set(SOURCE_FILES
 	src/main.cpp
 	src/CubeDetector.cpp
 	include/CubeDetector.h
-	src/RubiksCubeSolveAlgorithm.cpp 
 	src/Cube.cpp 
-	src/Cube.h 
+	include/Cube.h 
 	src/Wall.cpp 
-	src/Wall.h 
+	include/Wall.h 
 	src/Cell.cpp 
-	src/Cell.h)
+	include/Cell.h)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 

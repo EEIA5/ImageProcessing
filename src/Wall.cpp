@@ -14,6 +14,10 @@ Wall::Wall(Cell cells[6])
     }
 }
 
+Wall::Wall()
+{
+}
+
 Wall::~Wall()
 {
 }

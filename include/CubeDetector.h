@@ -8,13 +8,16 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-const int WHITE = 0;
-const int YELLOW = 1;
-const int GREEN = 2;
-const int RED = 3;
-const int ORANGE = 4;
-const int BLUE = 5;
-const int UNDEF = 6;
+const enum Color
+{
+	WHITE,
+	YELLOW,
+	GREEN,
+	RED,
+	ORANGE,
+	BLUE,
+	UNDEF
+};
 
 const int NumberOfSides = 7;
 const int NumberOfSquaresOnSide=9;
