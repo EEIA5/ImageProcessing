@@ -4,51 +4,29 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-const enum Color
-{
-	WHITE,
-	YELLOW,
-	GREEN,
-	RED,
-	ORANGE,
-	BLUE,
-	UNDEF
-};
-
-const int NumberOfSides = 7;
-const int NumberOfSquaresOnSide=9;
+#include "OpenCV.h"
 
 using namespace std;
 using namespace cv;
 
 class CubeDetector
 {
-    public:
-        int tresholdCannyOne;
-        int tresholdCannyTwo;
-        string windowCamera;
-        string windowCanny;
-        string windowRubicCube;
-        int** init();
-        void getFrame();
-        void findCube();
-        void updateCubeWindow();
-        bool isWorking();
-        int detectSide();
-        void getColors(int**side);
-        CubeDetector();
-        virtual ~CubeDetector();
-        void print(int ** sides);
-    private:
-        int getColor(int x, int y);
-        vector<vector<Point > > squares;
-        Mat frame;
-        Mat cube;
-        VideoCapture* videoCapture;
+public:
+    int tresholdCannyOne;
+    int tresholdCannyTwo;
+    void init();
+    void findContures();
+    bool isWorking();
+    Mat getCube();
+    CubeDetector();
+    virtual ~CubeDetector();
+private:
+    vector<vector<Point>> squares;
+    Mat frame;
+    Mat cubeMat;
+    VideoCapture* videoCapture;
+    bool isSquare( int x1, int x2, int y1, int y2, int tolerance );
+    bool isSizeOk( int x1, int x2, int size );
 };
 
 #endif

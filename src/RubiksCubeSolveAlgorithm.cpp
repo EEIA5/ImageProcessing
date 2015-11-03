@@ -1,5 +1,5 @@
 
 
-bool isEven(int num){
+bool isEven( int num ){
 	return num % 2;
 }
