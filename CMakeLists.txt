@@ -4,7 +4,19 @@ find_package(OpenCV REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES src/main.cpp src/RubiksCubeSolveAlgorithm.cpp src/Cube.cpp src/Cube.h src/Wall.cpp src/Wall.h src/Cell.cpp src/Cell.h)
+set(SOURCE_FILES 
+	src/main.cpp
+	src/CubeDetector.cpp
+	include/CubeDetector.h
+	src/RubiksCubeSolveAlgorithm.cpp 
+	src/Cube.cpp 
+	src/Cube.h 
+	src/Wall.cpp 
+	src/Wall.h 
+	src/Cell.cpp 
+	src/Cell.h)
+
+include_directories("${CMAKE_SOURCE_DIR}/include")
 
 add_executable(ImageProcessing ${SOURCE_FILES})
 
