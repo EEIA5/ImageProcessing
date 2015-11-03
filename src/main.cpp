@@ -1,5 +1,6 @@
 #include "CubeDetector.h"
 #include "CubeAnalyzer.h"
+#include <stdexcept>
 
 int main( int argc,char*argv[] ){
 

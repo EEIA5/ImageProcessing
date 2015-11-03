@@ -1,4 +1,5 @@
 #include "CubeDetector.h"
+#include <stdexcept>
 
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 50;
