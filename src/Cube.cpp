@@ -2,6 +2,7 @@
 // Created by domin_000 on 25.10.2015.
 //
 
+#include <stddef.h>
 #include "Cube.h"
 #include "Colors.h"
 
@@ -20,7 +21,7 @@ Cube::Cube() {
 }
 
 void Cube::setCell(Color wall, int number, Color color) {
-	auto w = walls[wall];
+	Wall w = walls[wall];
 	w.getCell(number).setColor(color);
 }
 Cube::~Cube()

@@ -10,7 +10,7 @@ CubeAnalyzer::~CubeAnalyzer() {
 
 void CubeAnalyzer::analyze(Mat cubeMat) {
 	this->cubeMat = cubeMat;
-	auto imageSize = cubeMat.size();
+	Size imageSize = cubeMat.size();
 	int w = imageSize.width;
 	if (w != 0) {
 		int step = w / 3;
@@ -26,21 +26,19 @@ void CubeAnalyzer::analyze(Mat cubeMat) {
 	}
 }
 
-Color CubeAnalyzer::detectSide() const
-{
+Color CubeAnalyzer::detectSide() {
 	Size cubeSize = cubeMat.size();
 	return static_cast<Color>(getColor(cubeSize.width / 2, cubeSize.height / 2));
 }
 
-Color CubeAnalyzer::getColor(int x, int y) const
-{
+Color CubeAnalyzer::getColor(int x, int y) {
 	Mat HSV;
-	Size2i cubeSize = cubeMat.size();
+	Size cubeSize = cubeMat.size();
 	int radius = 4;
 	int sumH = 0, sumS = 0, sumV = 0;
 	if (isPointInMatrixBounds(x, y, cubeSize.width, cubeSize.height, radius)) {
 		vector<Vec3b> colors;
-		auto RGB = cubeMat(Rect(x, y, 1, 1));
+		Mat RGB = cubeMat(Rect(x, y, 1, 1));
 		cvtColor(RGB, HSV, CV_BGR2HSV);
 		colors.push_back(HSV.at<Vec3b>(0, 0));
 		RGB = cubeMat(Rect(x - radius, y, 1, 1));
@@ -62,7 +60,7 @@ Color CubeAnalyzer::getColor(int x, int y) const
 			sumV += int(colors[i][2]);
 		}
 
-		auto color = HSV.at<Vec3b>(0, 0);
+		Vec3b color = HSV.at<Vec3b>(0, 0);
 		color[0] = sumH / colors.size();
 		color[1] = sumS / colors.size();
 		color[2] = sumV / colors.size();
@@ -73,22 +71,24 @@ Color CubeAnalyzer::getColor(int x, int y) const
 		if (color[0] < 179 && color[0] >= 160 && color[1] > whiteLv && color[2] > blackLv) {
 			return RED;
 		}
-		if (color[0] >= 0 && color[0] < 22 && color[1] > whiteLv && color[2] > blackLv) {
+		else if (color[0] >= 0 && color[0] < 22 && color[1] > whiteLv && color[2] > blackLv) {
 			return ORANGE;
 		}
-		if (color[0] >= 22 && color[0] < 38 && color[1] > whiteLv && color[2] > blackLv) {
+		else if (color[0] >= 22 && color[0] < 38 && color[1] > whiteLv && color[2] > blackLv) {
 			return YELLOW;
 		}
-		if (color[0] >= 38 && color[0] < 95 && color[1] > whiteLv && color[2] > blackLv) {
+		else if (color[0] >= 38 && color[0] < 95 && color[1] > whiteLv && color[2] > blackLv) {
 			return GREEN;
 		}
-		if (color[0] >= 95 && color[0] < 120 && color[1] > whiteLv && color[2] > blackLv) {
+		else if (color[0] >= 95 && color[0] < 120 && color[1] > whiteLv && color[2] > blackLv) {
 			return BLUE;
 		}
-		if (color[1] < whiteLv && color[2] > blackLv) {
+		else if (color[1] < whiteLv && color[2] > blackLv) {
 			return WHITE;
 		}
-		return UNDEF;
+		else {
+			return UNDEF;
+		}
 	}
 	return UNDEF;
 }

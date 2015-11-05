@@ -15,9 +15,9 @@ public:
 private:
 	Mat cubeMat;
 	Cube cube;
-	static bool isPointInMatrixBounds(int x, int y, int width, int height, int radius);
-	Color detectSide() const;
-	Color getColor(int x, int y) const;
+	bool isPointInMatrixBounds(int x, int y, int width, int height, int radius);
+	Color detectSide();
+	Color getColor(int x, int y);
 };
 
 

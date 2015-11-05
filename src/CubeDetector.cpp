@@ -80,13 +80,11 @@ void CubeDetector::init() {
 }
 
 
-bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance) const
-{
+bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance) {
 	return (abs(abs(x1 - x2) - abs(y1 - y2)) < tolerance);
 }
 
-bool CubeDetector::isSizeOk(int x1, int x2, int size) const
-{
+bool CubeDetector::isSizeOk(int x1, int x2, int size) {
 	return (abs(x1 - x2) > size);
 }
 

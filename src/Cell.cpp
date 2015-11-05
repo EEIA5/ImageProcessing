@@ -6,7 +6,7 @@ Cell::Cell()
 	setColor(Scalar(0, 0, 0));
 }
 
-Cell::Cell(string name)
+Cell::Cell(std::string name)
 {
 	if (name == "blue") {
 		setHSVmin(Scalar(92, 0, 0));
@@ -69,32 +69,32 @@ Cell::~Cell()
 {
 }
 
-void Cell::setColor(Scalar color)
+void Cell::setColor(cv::Scalar color)
 {
 	this->color = color;
 }
 
-cv::Scalar Cell::getColor() const
+cv::Scalar Cell::getColor()
 {
 	return this->color;
 }
 
-cv::Scalar Cell::getHSVmin() const
+cv::Scalar Cell::getHSVmin()
 {
 	return this->HSVmin;
 }
 
-cv::Scalar Cell::getHSVmax() const
+cv::Scalar Cell::getHSVmax()
 {
 	return this->HSVmax;
 }
 
-void Cell::setHSVmin(Scalar min)
+void Cell::setHSVmin(cv::Scalar min)
 {
 	this->HSVmin = min;
 }
 
-void Cell::setHSVmax(Scalar max)
+void Cell::setHSVmax(cv::Scalar max)
 {
 	this->HSVmax = max;
 }

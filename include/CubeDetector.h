@@ -25,8 +25,8 @@ private:
 	Mat frame;
 	Mat cubeMat;
 	VideoCapture* videoCapture;
-	bool isSquare(int x1, int x2, int y1, int y2, int tolerance) const;
-	bool isSizeOk(int x1, int x2, int size) const;
+	bool isSquare(int x1, int x2, int y1, int y2, int tolerance);
+	bool isSizeOk(int x1, int x2, int size);
 };
 
 #endif
