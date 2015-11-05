@@ -1,24 +1,26 @@
-#pragma once
+
 #include<string>
-#include "CubeDetector.h"
-#include<cv.h>
+#include "OpenCV.h"
+#include "Colors.h"
+
 using namespace cv;
+
 class Cell
 {
 public:
 	Cell();
-	Cell(std::string name);
+	Cell( std::string name );
 	Cell(Color color);
 	~Cell();
-	void setColor(cv::Scalar color);
-	cv::Scalar getColor();
-	cv::Scalar getHSVmin();
-	cv::Scalar getHSVmax();
-
-	void setHSVmin(cv::Scalar min);
-	void setHSVmax(cv::Scalar max);
+	void setColor( Scalar color );
+	Scalar getColor();
+	Scalar getHSVmin();
+	Scalar getHSVmax();
+    Color colorEnum;
+	void setHSVmin( Scalar min );
+	void setHSVmax( Scalar max );
 private:
-	cv::Scalar color;
-	cv::Scalar HSVmin, HSVmax;
+	Scalar color;
+	Scalar HSVmin, HSVmax;
 };
 

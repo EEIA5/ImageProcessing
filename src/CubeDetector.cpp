@@ -1,192 +1,90 @@
 #include "CubeDetector.h"
+#include <stdexcept>
 
 CubeDetector::CubeDetector(){
-    tresholdCannyOne=50;
-    tresholdCannyTwo=50;
-    windowCamera="Camera";
-    windowCanny="Canny";
-    windowRubicCube="Cube";
-    videoCapture= nullptr;
+    tresholdCannyOne = 50;
+    tresholdCannyTwo = 50;
+    videoCapture = nullptr;
 }
 
 CubeDetector::~CubeDetector(){
-    if (videoCapture!= nullptr)
     delete videoCapture;
 }
 
-void CubeDetector::getFrame(){
-    (*videoCapture) >> frame;
-    if (frame.empty()){
-        cout<<"Empty frame!"<<endl;
-    }
-}
-
 bool CubeDetector::isWorking(){
-	auto key = static_cast<char>(waitKey(5));
-        if (key=='q'){
+	auto key = static_cast<char>( waitKey(5) );
+        if ( key == 'q' ){
             return false;
         }
     return true;
 }
 
-void CubeDetector::findCube(){
+void CubeDetector::findContures(){
     squares.clear();
-    Mat imageGray;
-    vector<vector<Point> > contours;
-
-    Canny(frame, imageGray,tresholdCannyOne,tresholdCannyTwo,3);
-    imshow(windowCanny, imageGray);
-    findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
-
+    vector<vector<Point>> contours;
     vector<Point> approxs;
+    Mat imageGray;
+
+    (*videoCapture) >> frame;
+    if ( frame.empty() ){
+        throw runtime_error( "Empty frame!" );
+    }
+    imshow( windowCamera, frame );
+
+    Canny( frame, imageGray, tresholdCannyOne, tresholdCannyTwo );
+    findContours( imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE );
+
     int area;
+    for( unsigned contoure = 0; contoure < contours.size(); contoure++ ){
+        approxPolyDP( Mat(contours[contoure]), approxs, arcLength( Mat( contours[contoure] ), true) * 0.02, true );
+        area = contourArea( Mat(approxs) );
 
-    for( unsigned contoure = 0; contoure < contours.size(); contoure++ )
-    {
-        approxPolyDP(Mat(contours[contoure]), approxs, arcLength(Mat(contours[contoure]), true)*0.02, true);
-        area = contourArea(Mat(approxs));
-
-        if( approxs.size() == 4 && area > 2500 ){
+        if( approxs.size() == 4 && area > 1000 ){
             squares.push_back(approxs);
         }
     }
 }
 
-void CubeDetector::updateCubeWindow(){
+Mat CubeDetector::getCube(){
 	auto imageSize = frame.size();
-    int minY=imageSize.height;
-    int minX=imageSize.width;
-    int maxX=0,maxY=0;
+    int minY = imageSize.height, minX = imageSize.width;
+    int maxY = 0, maxX = 0;
     for( unsigned i = 0; i < squares.size(); i++ )
     {
-        int n = static_cast<int>(squares[i].size());
-        for (auto square=0;square<n;square++){
+        int n = static_cast< int >( squares[i].size() );
+        for ( int square = 0; square < n; square++ ){
             if (squares[i][square].x > maxX)
-                maxX=squares[i][square].x;
+                maxX = squares[i][square].x;
             if (squares[i][square].y > maxY)
-                maxY=squares[i][square].y;
+                maxY = squares[i][square].y;
             if (squares[i][square].x < minX)
-                minX=squares[i][square].x;
+                minX = squares[i][square].x;
             if (squares[i][square].y < minY)
-                minY=squares[i][square].y;
+                minY = squares[i][square].y;
         }
     }
-    if (minX+abs(maxX-minX)< imageSize.width-1 && minY+abs(maxY-minY)< imageSize.height-1
-        && abs(abs(maxX - minX )-abs(maxY-minY)) <10 && abs(maxX-minX)>200){
-        cube.release();
-        cube = frame(Rect(minX,minY,abs(maxX-minX),abs(maxY-minY))).clone();
-        imshow(windowRubicCube,cube);
+    if (isSquare( maxX, minX, maxY, minY, 10) && isSizeOk(maxX, minX, 170) ){
+        cubeMat.release();
+        cubeMat = frame( Rect(minX, minY, abs(maxX - minX), abs(maxY - minY)) ).clone();
     }
-    imshow(windowCamera, frame);
+    return cubeMat;
 }
 
-int ** CubeDetector::init(){
+void CubeDetector::init(){
     namedWindow( windowCamera, WINDOW_AUTOSIZE );
-    namedWindow( windowCanny, WINDOW_AUTOSIZE );
     namedWindow( windowRubicCube, WINDOW_AUTOSIZE );
-
-    int**sides = new int *[NumberOfSides];
-
-    for (int i= 0; i< NumberOfSides; i++){
-        sides[i]=new int[NumberOfSquaresOnSide];
+    videoCapture = new VideoCapture( 0 );
+    if ( !videoCapture->isOpened() ) {
+        throw runtime_error( "Failed to open a video device!\nInitialization failed!" );
+    }
     }
 
-    for (int j = 0; j<NumberOfSides ; j++){
-        for (int i=0;i<NumberOfSquaresOnSide ;i++)
-            sides[j][i]=UNDEF;
-    }
 
-    videoCapture = new VideoCapture(0);
-    if (!videoCapture->isOpened()) {
-        cout << "Failed to open a video device!\nInitialization failed!" << endl;
-        return nullptr;
-    }
-    cout<<"Initialization success!\nPress q to exit!\n"<<endl;
-    return sides;
-}
-
-int CubeDetector::detectSide(){
-    Size cubeSize = cube.size();
-    int height=cubeSize.height;
-    int width=cubeSize.width;
-    return getColor(width/2,height/2);
-}
-
-int CubeDetector::getColor(int x,int y){
-    Mat HSV;
-    int d=4;
-    int sumH=0,sumS=0,sumV=0;
-    if (x>= d && y>= d && x+d <cube.size().width && y+d < cube.size().height){
-        vector<Vec3b> colors;
-        Mat RGB=cube(Rect(x,y,1,1));
-        cvtColor(RGB, HSV,CV_BGR2HSV);
-        colors.push_back(HSV.at<Vec3b>(0,0));
-        RGB=cube(Rect(x-d,y-d,1,1));
-        cvtColor(RGB, HSV,CV_BGR2HSV);
-        colors.push_back(HSV.at<Vec3b>(0,0));
-        RGB=cube(Rect(x+d,y+d,1,1));
-        cvtColor(RGB, HSV,CV_BGR2HSV);
-        colors.push_back(HSV.at<Vec3b>(0,0));
-
-        for (unsigned i = 0; i<colors.size(); i++){
-            sumH+=int(colors[i][0]); sumS+=int(colors[i][1]); sumV+=int(colors[i][2]);
+bool CubeDetector::isSquare( int x1, int x2, int y1, int y2, int tolerance ){
+    return ( abs( abs( x1 - x2 ) - abs( y1 - y2 ) ) < tolerance );
         }
 
-        Vec3b color=HSV.at<Vec3b>(0,0);
-        color[0]=sumH/colors.size();
-        color[1]=sumS/colors.size();
-        color[2]=sumV/colors.size();
-        short whiteLv = 50;
-        short blackLv = 70;
-        if (color[0]<179 && color[0]>=160 && color[1]>whiteLv && color[2]>blackLv ){
-			return RED;
-        } else if (color[0]>=0 && color[0]<22 && color[1]>whiteLv && color[2]>blackLv ){
-            return ORANGE;
-        } else if (color[0]>=22 && color[0]<38 && color[1]>whiteLv && color[2]>blackLv ){
-            return YELLOW;
-        } else if (color[0]>=38 && color[0]<95 && color[1]>whiteLv && color[2]>blackLv ){
-            return GREEN;
-        } else if (color[0]>=95 && color[0]<120 && color[1]>whiteLv && color[2]>blackLv ){
-            return BLUE;
-        } else if (color[1]<whiteLv && color[2]>blackLv){
-            return WHITE;
-        } else{
-            return UNDEF;
-        }
-    }
-    return UNDEF;
-}
-
-void CubeDetector::getColors(int** sides){
-    Size imageSize = cube.size();
-    int h=imageSize.height;
-    int w=imageSize.width;
-
-    if (w<=10 || h <= 10)
-        return;
-
-    int step= w / 3;
-    int start = w*0.17;
-    int sideNumber = detectSide();
-    for (unsigned short horizontal = 0; horizontal < 3; horizontal++){
-        for (unsigned short vertical = 0; vertical < 3; vertical++){
-                    circle(cube,Point(start+step*horizontal,start+step*vertical),4,Scalar(0,0,0));
-                    sides[sideNumber][horizontal+vertical*3]=getColor(start+step*horizontal,start+step*vertical);
-        }
-    }
-    imshow(windowRubicCube,cube);
-}
-
-void CubeDetector::print(int** sides){
-
-    for (int j = 0; j<NumberOfSides-1 ;j++){
-        cout<<endl<<endl;;
-            cout<<"Side nr: "<<j<<endl;
-            for (int i=1 ; i<=NumberOfSquaresOnSide ;i++){
-                cout<<sides[j][i-1]<<" ";
-                if (i%3==0)
-                    cout<<endl;
-            }
-        }
+bool CubeDetector::isSizeOk( int x1, int x2, int size ){
+    return ( abs( x1 - x2 ) > size );
 }
 

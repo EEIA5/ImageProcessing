@@ -1,46 +1,29 @@
 #include "Cell.h"
-
-
+#include "OpenCV.h"
 
 Cell::Cell()
 {
-	setColor(Scalar(0, 0, 0));
+	setColor(Scalar( 0, 0, 0 ));
 }
 
 Cell::Cell(std::string name)
 {
 	if (name == "blue") {
-
-		setHSVmin(Scalar(92, 0, 0));
-		setHSVmax(Scalar(124, 256, 256));
-
-		setColor(Scalar(255, 0, 0));
-
-	}
-	if (name == "green") {
-
-		setHSVmin(Scalar(34, 50, 50));
-		setHSVmax(Scalar(80, 220, 200));
-
-		setColor(Scalar(0, 255, 0));
-
-	}
-	if (name == "yellow") {
-
-		setHSVmin(Scalar(20, 124, 123));
-		setHSVmax(Scalar(30, 256, 256));
-
-		//BGR value for Red:
-		setColor(Scalar(0, 255, 255));
-
-	}
-	if (name == "red") {
-
-		setHSVmin(Scalar(0, 200, 0));
-		setHSVmax(Scalar(19, 255, 255));
-
-		setColor(Scalar(0, 0, 255));
-
+		setHSVmin( Scalar( 92, 0, 0 ) );
+		setHSVmax( Scalar( 124, 256, 256 ) );
+		setColor( Scalar( 255, 0, 0 ) );
+	}else if (name == "green") {
+		setHSVmin( Scalar( 34, 50, 50 ) );
+		setHSVmax( Scalar( 80, 220, 200 ) );
+		setColor( Scalar( 0, 255, 0 ) );
+	}else if (name == "yellow") {
+		setHSVmin( Scalar( 20, 124, 123 ) );
+		setHSVmax( Scalar( 30, 256, 256 ) );
+		setColor( Scalar( 0, 255, 255 ) );
+	}else if (name == "red") {
+		setHSVmin( Scalar( 0, 200, 0 ) );
+		setHSVmax( Scalar( 19, 255, 255 ) );
+		setColor( Scalar( 0, 0, 255 ) );
 	}
 }
 
@@ -83,7 +66,7 @@ Cell::~Cell()
 {
 }
 
-void Cell::setColor(cv::Scalar color)
+void Cell::setColor( cv::Scalar color )
 {
 	this->color = color;
 }
@@ -103,7 +86,7 @@ cv::Scalar Cell::getHSVmax()
 	return this->HSVmax;
 }
 
-void Cell::setHSVmin(cv::Scalar min)
+void Cell::setHSVmin( cv::Scalar min )
 {
 	this->HSVmin = min;
 }

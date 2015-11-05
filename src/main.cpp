@@ -1,23 +1,20 @@
 #include "CubeDetector.h"
+#include "CubeAnalyzer.h"
+#include <stdexcept>
 
-int main(int argc,char*argv[]){
+int main( int argc,char*argv[] ){
 
     CubeDetector cubeDetector;
-    int **sides=cubeDetector.init();
-    if (sides== nullptr)
-        return -1;
-    while (cubeDetector.isWorking()){
-        cubeDetector.getFrame();
-        cubeDetector.findCube();
-        cubeDetector.updateCubeWindow();
-        cubeDetector.getColors(sides);
-        cubeDetector.print(sides);
+    CubeAnalyzer cubeAnalyzer;
+    try {
+        cubeDetector.init();
+        while ( cubeDetector.isWorking() ){
+            cubeDetector.findContures();
+            cubeAnalyzer.analyze( cubeDetector.getCube() );
+        }
+    }catch ( runtime_error e ){
+        cout << "Exception: " << e.what() << endl;
     }
-
-    for (int i = 0 ; i< NumberOfSides ; i++){
-        delete [] sides[i];
-    }
-    delete [] sides;
     return 0;
 }
 
