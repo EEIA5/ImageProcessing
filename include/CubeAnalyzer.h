@@ -8,16 +8,16 @@
 class CubeAnalyzer
 {
 public:
-    CubeAnalyzer();
-    virtual ~CubeAnalyzer();
-    void analyze( Mat cubeMat );
+	CubeAnalyzer();
+	virtual ~CubeAnalyzer();
+	void analyze(Mat cubeMat);
 
 private:
-    Mat cubeMat;
-    Cube cube;
-    bool isPointInMatrixBounds( int x, int y, int width, int height, int radius );
-    Color detectSide();
-    Color getColor( int x, int y );
+	Mat cubeMat;
+	Cube cube;
+	static bool isPointInMatrixBounds(int x, int y, int width, int height, int radius);
+	Color detectSide() const;
+	Color getColor(int x, int y) const;
 };
 
 

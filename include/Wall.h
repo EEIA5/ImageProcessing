@@ -8,10 +8,10 @@
 class Wall
 {
 public:
-    Wall( Cell cells[9] );
+	Wall(Cell cells[9]);
 	Wall();
-	Cell getCell( int number );
-    ~Wall();
+	Cell getCell(int number);
+	~Wall();
 private:
-    Cell cells[ 9 ];
+	Cell cells[9];
 };

@@ -13,9 +13,9 @@ public:
 	Cell(Color color);
 	~Cell();
 	void setColor( Scalar color );
-	Scalar getColor();
-	Scalar getHSVmin();
-	Scalar getHSVmax();
+	Scalar getColor() const;
+	Scalar getHSVmin() const;
+	Scalar getHSVmax() const;
     Color colorEnum;
 	void setHSVmin( Scalar min );
 	void setHSVmax( Scalar max );

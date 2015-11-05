@@ -9,10 +9,10 @@
 class Cube
 {
 public:
-    Cube( Wall walls[6] );
-    Cube();
-    ~Cube();
-    void setCell( Color wall, int number, Color color );
+	Cube(Wall walls[6]);
+	Cube();
+	~Cube();
+	void setCell(Color wall, int number, Color color);
 private:
-    Wall walls[6];
+	Wall walls[6];
 };
