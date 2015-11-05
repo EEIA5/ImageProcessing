@@ -2,17 +2,19 @@
 // Created by domin_000 on 25.10.2015.
 //
 
-#pragma once
 #include "Wall.h"
 #include "Colors.h"
+#include <iostream>
+
+using namespace std;
 
 class Cube
 {
 public:
-    Cube( Wall walls[6] );
     Cube();
     ~Cube();
-    void setCell( Color wall, int number, Color color );
+    void setCellColor(Color wall, int number, Color color);
+    void print();
 private:
     Wall walls[6];
 };

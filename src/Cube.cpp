@@ -6,25 +6,28 @@
 #include "Cube.h"
 #include "Colors.h"
 
-Cube::Cube( Wall _walls[6] )
-{
-    for ( size_t i = 0; i < 6; i++ ){
-        walls[i] = _walls[i];
-    }
-}
-
 Cube::Cube(){
-    for ( size_t i = 0; i < 6; i++ ){
-        Cell cell[9];
-        walls[i] = Wall(cell);
+
+}
+
+Cube::~Cube(){
+
+}
+
+void Cube::setCellColor(Color wall, int number, Color color){
+    walls[wall].getCell(number).setColor(color);
+}
+
+void Cube::print(){
+    for (unsigned i = 0; i < 6; i++){
+        cout<<endl<<endl<<"Side: "<<i<<endl<<endl;
+        for (unsigned j = 0; j < 9; j++){
+            if (j % 3 == 0 && j != 0){
+                cout<<endl;
+            }
+            cout<<walls[i].getCell(j).getColor()<<" ";
+
+        }
     }
 }
 
-void Cube::setCell( Color wall, int number, Color color ){
-    Wall w= walls[wall];
-    w.getCell(number).setColor(color);
-}
-Cube::~Cube()
-{
-
-}

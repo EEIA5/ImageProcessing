@@ -4,24 +4,18 @@
 
 #include <stddef.h>
 #include "Wall.h"
+#include <iostream>
 
+using namespace std;
 
-Wall::Wall(Cell cells[6])
-{
-    for ( size_t i = 0; i < 6; i++ )
-    {
-        this->cells[i] = cells[i];
-    }
-}
-
-Cell Wall::getCell( int number ){
+Cell& Wall::getCell(int number){
     return cells[number];
 }
 
-Wall::Wall()
-{
+Wall::Wall(){
+
 }
 
-Wall::~Wall()
-{
+Wall::~Wall(){
+
 }
