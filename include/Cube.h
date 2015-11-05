@@ -13,6 +13,7 @@ public:
 	Cube();
 	~Cube();
 	void setCell(Color wall, int number, Color color);
+	Wall getWall(int index);
 private:
 	Wall walls[6];
 };

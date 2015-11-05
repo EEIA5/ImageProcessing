@@ -24,6 +24,12 @@ void Cube::setCell(Color wall, int number, Color color) {
 	Wall w = walls[wall];
 	w.getCell(number).setColor(color);
 }
+
+Wall Cube::getWall(int index)
+{
+	return this->walls[index % 6];
+}
+
 Cube::~Cube()
 {
 
