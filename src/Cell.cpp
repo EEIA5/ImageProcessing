@@ -1,10 +1,7 @@
 #include "Cell.h"
-#include <iostream>
-
-using namespace std;
 
 Cell::Cell(){
-	color = UNDEF;
+    color = UNDEF;
 }
 
 Cell::~Cell(){
@@ -12,7 +9,6 @@ Cell::~Cell(){
 }
 
 void Cell::setColor(Color& color){
-
 	this->color = color;
 }
 

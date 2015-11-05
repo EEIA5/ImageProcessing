@@ -30,13 +30,13 @@ void CubeDetector::findContures(){
     Mat imageGray;
 
     (*videoCapture) >> frame;
-    if ( frame.empty() ){
-        throw runtime_error( "Empty frame!" );
+    if (frame.empty()){
+        throw runtime_error("Empty frame!");
     }
-    imshow( windowCamera, frame );
+    imshow(windowCamera, frame);
 
-    Canny( frame, imageGray, tresholdCannyOne, tresholdCannyTwo );
-    findContours( imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE );
+    Canny(frame, imageGray, tresholdCannyOne, tresholdCannyTwo);
+    findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
 
     int area;
     for(unsigned contoure = 0; contoure < contours.size(); contoure++){
@@ -86,7 +86,7 @@ void CubeDetector::init(){
 }
 
 bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance){
-    return (abs( abs( x1 - x2 ) - abs( y1 - y2 ) ) < tolerance);
+    return (abs(abs(x1 - x2) - abs(y1 - y2)) < tolerance);
 }
 
 bool CubeDetector::isSizeOk(int x1, int x2, int size){

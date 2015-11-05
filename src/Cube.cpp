@@ -26,7 +26,6 @@ void Cube::print(){
                 cout<<endl;
             }
             cout<<walls[i].getCell(j).getColor()<<" ";
-
         }
     }
 }

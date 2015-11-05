@@ -1,7 +1,4 @@
 #include "CubeAnalyzer.h"
-#include <iostream>
-
-using namespace std;
 
 CubeAnalyzer::CubeAnalyzer(){
     whiteLv = 50;
@@ -71,10 +68,10 @@ Vec3b CubeAnalyzer::getRawColor(int x, int y){
 
 Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
     int sumH = 0, sumS = 0, sumV = 0;
-    for ( unsigned i = 0; i<colors.size(); i++ ){
-        sumH += int( colors[i][0] );
-        sumS += int( colors[i][1] );
-        sumV += int( colors[i][2] );
+    for (unsigned i = 0; i<colors.size(); i++){
+        sumH += colors[i][0];
+        sumS += colors[i][1];
+        sumV += colors[i][2];
     }
     Vec3b color;
     color[0] = sumH / colors.size();
@@ -84,7 +81,6 @@ Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
 }
 
 Color CubeAnalyzer::classifyColor(Vec3b color){
-
     if (color[0] < 179 && color[0] >= 160 && color[1] > whiteLv && color[2] > blackLv){
         return RED;
     } else if (color[0] >= 0 && color[0] < 22 && color[1] > whiteLv && color[2] > blackLv){
