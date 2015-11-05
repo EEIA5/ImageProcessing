@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include "CubeDetector.h"
 #include<cv.h>
 using namespace cv;
 class Cell
@@ -7,6 +8,7 @@ class Cell
 public:
 	Cell();
 	Cell(std::string name);
+	Cell(Color color);
 	~Cell();
 	void setColor(cv::Scalar color);
 	cv::Scalar getColor();

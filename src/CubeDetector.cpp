@@ -60,7 +60,7 @@ void CubeDetector::updateCubeWindow(){
     for( unsigned i = 0; i < squares.size(); i++ )
     {
         int n = static_cast<int>(squares[i].size());
-        for (int square=0;square<n;square++){
+        for (auto square=0;square<n;square++){
             if (squares[i][square].x > maxX)
                 maxX=squares[i][square].x;
             if (squares[i][square].y > maxY)
@@ -99,7 +99,7 @@ int ** CubeDetector::init(){
     videoCapture = new VideoCapture(0);
     if (!videoCapture->isOpened()) {
         cout << "Failed to open a video device!\nInitialization failed!" << endl;
-        return NULL;
+        return nullptr;
     }
     cout<<"Initialization success!\nPress q to exit!\n"<<endl;
     return sides;
@@ -157,7 +157,7 @@ int CubeDetector::getColor(int x,int y){
     return UNDEF;
 }
 
-void CubeDetector::getColors(int ** sides){
+void CubeDetector::getColors(int** sides){
     Size imageSize = cube.size();
     int h=imageSize.height;
     int w=imageSize.width;
@@ -177,7 +177,7 @@ void CubeDetector::getColors(int ** sides){
     imshow(windowRubicCube,cube);
 }
 
-void CubeDetector::print(int ** sides){
+void CubeDetector::print(int** sides){
 
     for (int j = 0; j<NumberOfSides-1 ;j++){
         cout<<endl<<endl;;
