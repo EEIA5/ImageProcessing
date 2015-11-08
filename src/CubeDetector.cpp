@@ -1,11 +1,10 @@
 #include "CubeDetector.h"
-
 #include <stdexcept>
 
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 30;
     tresholdCannyTwo = 30;
-    minArea = 1000;
+    minArea = 2000;
     minSquareSide = 170;
     squareTolerance = 15;
     videoCapture = nullptr;
@@ -51,12 +50,12 @@ void CubeDetector::findContures(){
 
 Mat CubeDetector::getCube(){
 	auto imageSize = frame.size();
-    int minY = imageSize.height, minX = imageSize.width;
-    int maxY = 0, maxX = 0;
-    int n, x, y;
+    unsigned minY = imageSize.height, minX = imageSize.width;
+    unsigned maxY = 0, maxX = 0;
+    unsigned n, x, y;
     for(unsigned i = 0; i < squares.size(); i++){
         n = squares[i].size();
-        for (unsigned square = 0; square < n; square++){
+        for(unsigned square = 0; square < n; square++){
             x = squares[i][square].x;
             y = squares[i][square].y;
             if (x > maxX)

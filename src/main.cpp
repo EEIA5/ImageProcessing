@@ -14,7 +14,7 @@ int main(int argc, char* argv[]){
         while (cubeDetector.isWorking()){
             cubeDetector.findContures();
             cubeAnalyzer.analyze(cubeDetector.getCube());
-            cubeAnalyzer.getCube().print();
+            cubeAnalyzer.getCube()->print();
         }
     }catch (runtime_error e){
         cout << "Exception: " << e.what() << endl;

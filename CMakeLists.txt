@@ -7,7 +7,17 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES 
 	src/main.cpp
 	src/CubeDetector.cpp
-	include/CubeDetector.h)
+	include/CubeDetector.h
+	src/Cube.cpp 
+	include/Cube.h 
+	src/Wall.cpp 
+	include/Wall.h 
+	src/Cell.cpp 
+	include/Cell.h
+	src/CubeAnalyzer.cpp
+	include/CubeAnalyzer.h
+	include/Colors.h
+	include/OpenCV.h)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 

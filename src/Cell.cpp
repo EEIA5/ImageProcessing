@@ -8,11 +8,11 @@ Cell::~Cell(){
 
 }
 
-void Cell::setColor(Color& color){
+void Cell::setColor(Color color){
 	this->color = color;
 }
 
 Color Cell::getColor(){
-	return color;
+	return this->color;
 }
 
