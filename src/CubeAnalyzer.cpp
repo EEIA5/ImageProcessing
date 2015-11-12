@@ -103,6 +103,6 @@ Color CubeAnalyzer::classifyColor(Vec3b color){
     }
 }
 
-Cube* CubeAnalyzer::getCube(){
-    return &cube;
+Cube CubeAnalyzer::getCube(){
+    return cube;
 }

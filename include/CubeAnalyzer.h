@@ -13,7 +13,7 @@ public:
     CubeAnalyzer();
     ~CubeAnalyzer();
     void analyze(Mat cubeMat);
-    Cube* getCube();
+    Cube getCube();
 private:
     short whiteLv;
     short blackLv;

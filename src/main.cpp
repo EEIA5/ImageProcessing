@@ -6,7 +6,6 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-
     CubeDetector cubeDetector;
     CubeAnalyzer cubeAnalyzer;
     try {
@@ -14,7 +13,11 @@ int main(int argc, char* argv[]){
         while (cubeDetector.isWorking()){
             cubeDetector.findContures();
             cubeAnalyzer.analyze(cubeDetector.getCube());
-            cubeAnalyzer.getCube()->print();
+            Cube cube = cubeAnalyzer.getCube();
+            cube.print();
+            if (cube.isComplete()){
+                cout<<"Complete!"<<endl;
+            }
         }
     }catch (runtime_error e){
         cout << "Exception: " << e.what() << endl;
