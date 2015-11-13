@@ -1,5 +1,10 @@
 #include "CubeDetector.h"
+#include "Constants.h"
 #include <stdexcept>
+
+#include "opencv2/imgproc/imgproc.hpp"
+
+using namespace std;
 
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 30;
@@ -7,7 +12,12 @@ CubeDetector::CubeDetector(){
     minArea = 2000;
     minSquareSide = 170;
     squareTolerance = 15;
-    videoCapture = nullptr;
+    windowName = "Camera";
+    namedWindow(windowName, WINDOW_AUTOSIZE);
+    videoCapture = new VideoCapture(0);
+    if (!videoCapture->isOpened()){
+        throw runtime_error("Failed to open a video device!\nInitialization failed!");
+    }
 }
 
 CubeDetector::~CubeDetector(){
@@ -32,7 +42,7 @@ void CubeDetector::findContures(){
     if (frame.empty()){
         throw runtime_error("Empty frame!");
     }
-    imshow(windowCamera, frame);
+    imshow(windowName, frame);
 
     Canny(frame, imageGray, tresholdCannyOne, tresholdCannyTwo);
     findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
@@ -73,15 +83,6 @@ Mat CubeDetector::getCube(){
         cubeMat = frame(Rect(minX, minY, abs(maxX - minX), abs(maxY - minY))).clone();
     }
     return cubeMat;
-}
-
-void CubeDetector::init(){
-    namedWindow(windowCamera, WINDOW_AUTOSIZE);
-    namedWindow(windowRubicCube, WINDOW_AUTOSIZE);
-    videoCapture = new VideoCapture(0);
-    if (!videoCapture->isOpened()){
-        throw runtime_error("Failed to open a video device!\nInitialization failed!");
-    }
 }
 
 bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance){

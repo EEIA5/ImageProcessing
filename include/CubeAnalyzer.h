@@ -1,9 +1,9 @@
 #ifndef CUBEANALYZER_H_INCLUDED
 #define CUBEANALYZER_H_INCLUDED
 
-#include "OpenCV.h"
 #include "Colors.h"
 #include "Cube.h"
+#include "opencv2/core/core.hpp"
 
 using namespace cv;
 
@@ -11,20 +11,19 @@ class CubeAnalyzer
 {
 public:
     CubeAnalyzer();
-    ~CubeAnalyzer();
     void analyze(Mat cubeMat);
     Cube getCube();
 private:
-    short whiteLv;
-    short blackLv;
+    string windowName;
     short radius;
     Mat cubeMat;
     Cube cube;
-    bool isInMatrixBounds(int x, int y, int width, int height);
-    Vec3b getRawColor(int x, int y);
+    bool isInMatrixBounds(unsigned x, unsigned y, unsigned width, unsigned height);
+    Vec3b getRawColor(unsigned x, unsigned y);
     Vec3b avgColors(vector<Vec3b> colors);
     Color detectSide();
-    Color reconizeColor(int x, int y);
+    Color reconizeColor(unsigned x, unsigned y);
     Color classifyColor(Vec3b color);
+    void drawCircles(Mat& mat, Point point, int radius, Color color);
 };
 #endif // CUBEANALYZER_H_INCLUDED

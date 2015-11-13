@@ -1,18 +1,13 @@
 #ifndef CUBEDETECTOR_H
 #define CUBEDETECTOR_H
 
-#include <string>
-#include <vector>
-#include <iostream>
-#include "OpenCV.h"
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
 
-using namespace std;
 using namespace cv;
-
 class CubeDetector
 {
 public:
-    void init();
     void findContures();
     bool isWorking();
     Mat getCube();
@@ -27,6 +22,7 @@ private:
     vector<vector<Point>> squares;
     Mat frame;
     Mat cubeMat;
+    string windowName;
     VideoCapture* videoCapture;
     bool isSquare(int x1, int x2, int y1, int y2, int tolerance);
     bool isSizeOk(int x1, int x2, int size);

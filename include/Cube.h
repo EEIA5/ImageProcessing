@@ -4,16 +4,14 @@
 class Cube
 {
 public:
-    Cube();
-    ~Cube();
-    Wall* getWall(Color wall);
     bool isComplete();
     void print();
+    Wall getWall(unsigned w);
 
-    Cube& operator=(const Cube& c);
-    bool operator==(const Cube& c);
-    Color operator()(int w, int c);
+    void setCell(unsigned w, unsigned c, Color color);
+    Color getCell(unsigned w, unsigned c);
 
+    Cube& operator = (const Cube& c);
 private:
     Wall walls[6];
 };

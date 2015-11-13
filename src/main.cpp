@@ -6,14 +6,15 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
-    CubeDetector cubeDetector;
-    CubeAnalyzer cubeAnalyzer;
+    Cube cube;
     try {
-        cubeDetector.init();
+        CubeDetector cubeDetector;
+        CubeAnalyzer cubeAnalyzer;
+
         while (cubeDetector.isWorking()){
             cubeDetector.findContures();
             cubeAnalyzer.analyze(cubeDetector.getCube());
-            Cube cube = cubeAnalyzer.getCube();
+            cube = cubeAnalyzer.getCube();
             cube.print();
             if (cube.isComplete()){
                 cout<<"Complete!"<<endl;

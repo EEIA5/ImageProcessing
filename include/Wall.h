@@ -1,12 +1,13 @@
-#include "Cell.h"
+#include "Constants.h"
+#include "Colors.h"
 
 class Wall
 {
 public:
     Wall();
-	Cell* getCell(int number);
-    ~Wall();
-
+    void print();
+    void setColor(unsigned number, Color color);
+    Color getColor(unsigned number);
 private:
-    Cell cells[9];
+    Color colors[numberOfCells];
 };
