@@ -1,31 +1,9 @@
-<<<<<<< HEAD
-//
-// Created by domin_000 on 25.10.2015.
-//
-
-#include <stddef.h>
-#include "Wall.h"
-=======
 #include "Wall.h"
 #include <stdexcept>
->>>>>>> origin/SideDetect
 #include <iostream>
 
 using namespace std;
 
-<<<<<<< HEAD
-Cell& Wall::getCell(int number){
-    return cells[number];
-}
-
-Wall::Wall(){
-
-}
-
-Wall::~Wall(){
-
-}
-=======
 Wall::Wall(){
     for (size_t cell = 0; cell < numberOfCells; cell++){
         colors[cell] = UNDEF;
@@ -58,4 +36,3 @@ void Wall::print(){
 
 
 
->>>>>>> origin/SideDetect

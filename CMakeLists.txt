@@ -11,22 +11,12 @@ set(SOURCE_FILES
 	src/Cube.cpp 
 	include/Cube.h 
 	src/Wall.cpp 
-<<<<<<< HEAD
-	include/Wall.h 
-	src/Cell.cpp 
-	include/Cell.h
-	src/CubeAnalyzer.cpp
-	include/CubeAnalyzer.h
-	include/Colors.h
-	include/OpenCV.h)
-=======
 	include/Wall.h
 	src/CubeAnalyzer.cpp
 	include/CubeAnalyzer.h
 	include/Colors.h
 	include/ColorsRange.h
 	include/Constants.h)
->>>>>>> origin/SideDetect
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 

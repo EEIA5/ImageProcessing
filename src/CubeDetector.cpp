@@ -6,17 +6,9 @@
 
 using namespace std;
 
-#include <stdexcept>
-
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 30;
     tresholdCannyTwo = 30;
-<<<<<<< HEAD
-    minArea = 1000;
-    minSquareSide = 170;
-    squareTolerance = 15;
-    videoCapture = nullptr;
-=======
     minArea = 2000;
     minSquareSide = 170;
     squareTolerance = 15;
@@ -26,7 +18,6 @@ CubeDetector::CubeDetector(){
     if (!videoCapture->isOpened()){
         throw runtime_error("Failed to open a video device!\nInitialization failed!");
     }
->>>>>>> origin/SideDetect
 }
 
 CubeDetector::~CubeDetector(){
@@ -48,15 +39,6 @@ void CubeDetector::findContures(){
     Mat imageGray;
 
     (*videoCapture) >> frame;
-<<<<<<< HEAD
-    if ( frame.empty() ){
-        throw runtime_error( "Empty frame!" );
-    }
-    imshow( windowCamera, frame );
-
-    Canny( frame, imageGray, tresholdCannyOne, tresholdCannyTwo );
-    findContours( imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE );
-=======
     if (frame.empty()){
         throw runtime_error("Empty frame!");
     }
@@ -64,7 +46,6 @@ void CubeDetector::findContures(){
 
     Canny(frame, imageGray, tresholdCannyOne, tresholdCannyTwo);
     findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
->>>>>>> origin/SideDetect
 
     int area;
     for(unsigned contoure = 0; contoure < contours.size(); contoure++){
@@ -79,21 +60,12 @@ void CubeDetector::findContures(){
 
 Mat CubeDetector::getCube(){
 	auto imageSize = frame.size();
-<<<<<<< HEAD
-    int minY = imageSize.height, minX = imageSize.width;
-    int maxY = 0, maxX = 0;
-    int n, x, y;
-    for(unsigned i = 0; i < squares.size(); i++){
-        n = squares[i].size();
-        for (unsigned square = 0; square < n; square++){
-=======
     unsigned minY = imageSize.height, minX = imageSize.width;
     unsigned maxY = 0, maxX = 0;
     unsigned n, x, y;
     for(unsigned i = 0; i < squares.size(); i++){
         n = squares[i].size();
         for(unsigned square = 0; square < n; square++){
->>>>>>> origin/SideDetect
             x = squares[i][square].x;
             y = squares[i][square].y;
             if (x > maxX)
@@ -113,22 +85,8 @@ Mat CubeDetector::getCube(){
     return cubeMat;
 }
 
-<<<<<<< HEAD
-void CubeDetector::init(){
-    namedWindow(windowCamera, WINDOW_AUTOSIZE);
-    namedWindow(windowRubicCube, WINDOW_AUTOSIZE);
-    videoCapture = new VideoCapture(0);
-    if (!videoCapture->isOpened()){
-        throw runtime_error("Failed to open a video device!\nInitialization failed!");
-    }
-}
-
-bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance){
-    return (abs( abs( x1 - x2 ) - abs( y1 - y2 ) ) < tolerance);
-=======
 bool CubeDetector::isSquare(int x1, int x2, int y1, int y2, int tolerance){
     return (abs(abs(x1 - x2) - abs(y1 - y2)) < tolerance);
->>>>>>> origin/SideDetect
 }
 
 bool CubeDetector::isSizeOk(int x1, int x2, int size){

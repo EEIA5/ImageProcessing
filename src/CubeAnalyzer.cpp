@@ -1,18 +1,4 @@
 #include "CubeAnalyzer.h"
-<<<<<<< HEAD
-#include <iostream>
-
-using namespace std;
-
-CubeAnalyzer::CubeAnalyzer(){
-    whiteLv = 50;
-    blackLv = 70;
-    radius = 4;
-}
-
-CubeAnalyzer::~CubeAnalyzer(){
-
-=======
 #include "Constants.h"
 #include "ColorsRange.h"
 #include "Colors.h"
@@ -24,7 +10,6 @@ CubeAnalyzer::CubeAnalyzer(){
     radius = 10;
     windowName = "Cube";
     namedWindow(windowName, WINDOW_AUTOSIZE);
->>>>>>> origin/SideDetect
 }
 
 void CubeAnalyzer::analyze(Mat cubeMat){
@@ -32,24 +17,6 @@ void CubeAnalyzer::analyze(Mat cubeMat){
     Size imageSize = cubeMat.size();
     int w = imageSize.width;
     Color sideColor;
-<<<<<<< HEAD
-    if (w != 0){
-        int step = w / 3;
-        int start = w * 0.17;
-        int x, y;
-        for (unsigned short horizontal = 0; horizontal < 3; horizontal++){
-            for (unsigned short vertical = 0; vertical < 3; vertical++){
-                x = start + step * horizontal;
-                y = start + step * vertical;
-                circle(cubeMat, Point(x, y), radius, Scalar(0, 0, 0));
-                sideColor = detectSide();
-                if (sideColor != UNDEF){
-                    cube.setCellColor(sideColor, horizontal + vertical * 3, reconizeColor(x, y));
-                }
-            }
-        }
-        imshow(windowRubicCube, cubeMat);
-=======
     Mat display;
     cubeMat.copyTo(display);
     if (w != 0){
@@ -70,7 +37,6 @@ void CubeAnalyzer::analyze(Mat cubeMat){
             }
         }
         imshow(windowName, display);
->>>>>>> origin/SideDetect
     }
 }
 
@@ -79,11 +45,7 @@ Color CubeAnalyzer::detectSide(){
     return reconizeColor(cubeSize.width / 2, cubeSize.height / 2);
 }
 
-<<<<<<< HEAD
-Color CubeAnalyzer::reconizeColor(int x ,int y){
-=======
 Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
->>>>>>> origin/SideDetect
     vector<Vec3b> colors;
     Size cubeSize = cubeMat.size();
     Color color = UNDEF;
@@ -99,19 +61,11 @@ Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
     return color;
 }
 
-<<<<<<< HEAD
-bool CubeAnalyzer::isInMatrixBounds(int x, int y, int width, int height){
-    return (x >= radius && y >= radius && x + radius < width && y + radius < height) ;
-}
-
-Vec3b CubeAnalyzer::getRawColor(int x, int y){
-=======
 bool CubeAnalyzer::isInMatrixBounds(unsigned x, unsigned y, unsigned width, unsigned height){
     return (x >= radius && y >= radius && x + radius < width && y + radius < height) ;
 }
 
 Vec3b CubeAnalyzer::getRawColor(unsigned x, unsigned y){
->>>>>>> origin/SideDetect
     Mat HSV;
     Mat BGR = cubeMat(Rect(x, y, 1, 1));
     cvtColor(BGR, HSV, CV_BGR2HSV);
@@ -120,17 +74,10 @@ Vec3b CubeAnalyzer::getRawColor(unsigned x, unsigned y){
 
 Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
     int sumH = 0, sumS = 0, sumV = 0;
-<<<<<<< HEAD
-    for ( unsigned i = 0; i<colors.size(); i++ ){
-        sumH += int( colors[i][0] );
-        sumS += int( colors[i][1] );
-        sumV += int( colors[i][2] );
-=======
     for (size_t i = 0; i < colors.size(); i++){
         sumH += colors[i][0];
         sumS += colors[i][1];
         sumV += colors[i][2];
->>>>>>> origin/SideDetect
     }
     Vec3b color;
     color[0] = sumH / colors.size();
@@ -140,22 +87,6 @@ Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
 }
 
 Color CubeAnalyzer::classifyColor(Vec3b color){
-<<<<<<< HEAD
-
-    if (color[0] < 179 && color[0] >= 160 && color[1] > whiteLv && color[2] > blackLv){
-        return RED;
-    } else if (color[0] >= 0 && color[0] < 22 && color[1] > whiteLv && color[2] > blackLv){
-        return ORANGE;
-    } else if (color[0] >= 22 && color[0] < 38 && color[1] > whiteLv && color[2] > blackLv){
-        return YELLOW;
-    } else if (color[0] >= 38 && color[0] < 95 && color[1] > whiteLv && color[2] > blackLv){
-        return GREEN;
-    } else if (color[0] >= 95 && color[0] < 120 && color[1] > whiteLv && color[2] > blackLv){
-        return BLUE;
-    } else if (color[1] < whiteLv && color[2] > blackLv){
-        return WHITE;
-    }else {
-=======
     if(color[0] >= RED_MIN && color[0] <= RED_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
         return RED;
     }else if(color[0] >= ORANGE_MIN && color[0] <= ORANGE_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
@@ -169,13 +100,10 @@ Color CubeAnalyzer::classifyColor(Vec3b color){
     }else if(color[1] < WHITE_LV && color[2] > BLACK_LV){
         return WHITE;
     }else{
->>>>>>> origin/SideDetect
         return UNDEF;
     }
 }
 
-<<<<<<< HEAD
-=======
 void CubeAnalyzer::drawCircles(Mat& mat, Point point, int radius, Color color){
     switch (color){
     case RED:
@@ -202,7 +130,6 @@ void CubeAnalyzer::drawCircles(Mat& mat, Point point, int radius, Color color){
     }
 }
 
->>>>>>> origin/SideDetect
 Cube CubeAnalyzer::getCube(){
     return cube;
 }

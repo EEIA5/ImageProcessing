@@ -1,18 +1,5 @@
 #include "CubeDetector.h"
 #include "CubeAnalyzer.h"
-<<<<<<< HEAD
-
-int main(int argc, char* argv[]){
-
-    CubeDetector cubeDetector;
-    CubeAnalyzer cubeAnalyzer;
-    try {
-        cubeDetector.init();
-        while (cubeDetector.isWorking()){
-            cubeDetector.findContures();
-            cubeAnalyzer.analyze(cubeDetector.getCube());
-            cubeAnalyzer.getCube().print();
-=======
 #include <iostream>
 #include <stdexcept>
 
@@ -32,7 +19,6 @@ int main(int argc, char* argv[]){
             if (cube.isComplete()){
                 cout<<"Complete!"<<endl;
             }
->>>>>>> origin/SideDetect
         }
     }catch (runtime_error e){
         cout << "Exception: " << e.what() << endl;
