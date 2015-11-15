@@ -1,17 +1,13 @@
-//
-// Created by domin_000 on 25.10.2015.
-//
-
-#pragma once
-#include "Cell.h"
+#include "Constants.h"
+#include "Colors.h"
 
 class Wall
 {
 public:
-	Wall(Cell cells[9]);
 	Wall();
-	Cell getCell(int number);
-	~Wall();
+    void print();
+    void setColor(unsigned number, Color color);
+    Color getColor(unsigned number);
 private:
-	Cell cells[9];
+    Color colors[numberOfCells];
 };

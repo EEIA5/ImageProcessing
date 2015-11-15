@@ -11,13 +11,12 @@ set(SOURCE_FILES
 	src/Cube.cpp 
 	include/Cube.h 
 	src/Wall.cpp 
-	include/Wall.h 
-	src/Cell.cpp 
-	include/Cell.h
+	include/Wall.h
 	src/CubeAnalyzer.cpp
 	include/CubeAnalyzer.h
 	include/Colors.h
-	include/OpenCV.h)
+	include/ColorsRange.h
+	include/Constants.h)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
