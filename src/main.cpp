@@ -13,7 +13,7 @@ int main(int argc,char*argv[]){
         cubeDetector.getColors(sides);
         cubeDetector.print(sides);
     }
-
+	
     for (int i = 0 ; i< NumberOfSides ; i++){
         delete [] sides[i];
     }

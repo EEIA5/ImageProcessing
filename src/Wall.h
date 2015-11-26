@@ -8,8 +8,13 @@
 class Wall
 {
 public:
-    Wall(Cell cells[6]);
+	
+	Wall();
+
+	Wall(Cell cells[9]);
+	Cell getCell(int i);
     ~Wall();
 private:
-    Cell cells[6];
+    Cell cells[9];
+	
 };

@@ -8,7 +8,9 @@
 class Cube
 {
 public:
-    Cube(Wall walls[6]);
+    Cube(Wall walls[]);
+	Wall getWall(int i);
+	//Cube getWall(int i);
     ~Cube();
 private:
     Wall walls[6];

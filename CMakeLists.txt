@@ -8,15 +8,19 @@ set(SOURCE_FILES
 	src/main.cpp
 	src/CubeDetector.cpp
 	include/CubeDetector.h
-	src/RubiksCubeSolveAlgorithm.cpp 
 	src/Cube.cpp 
 	src/Cube.h 
 	src/Wall.cpp 
 	src/Wall.h 
 	src/Cell.cpp 
-	src/Cell.h)
+	src/Cell.h
+	src/CubesAlgorithm.h
+	src/CubesAlgorithm.cpp
+	src/CubeAlgorithmClass.cpp
+	src/CubeAlgorithmClass.h
+	src/CubeDetector.h)
 
-include_directories("${CMAKE_SOURCE_DIR}/include")
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(ImageProcessing ${SOURCE_FILES})
 

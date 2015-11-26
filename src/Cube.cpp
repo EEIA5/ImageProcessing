@@ -4,13 +4,22 @@
 
 #include <stddef.h>
 #include "Cube.h"
-Cube::Cube(Wall _walls[6])
+#include "Wall.h"
+#include "Cell.h"
+
+Cube::Cube(Wall  _walls[])
 {
     for (size_t i = 0; i < 6; i++)
     {
         walls[i] = _walls[i];
     }
+
 }
+Wall Cube::getWall(int i)
+{
+	return this->walls[i];
+}
+
 
 Cube::~Cube()
 {
