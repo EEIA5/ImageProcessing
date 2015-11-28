@@ -1,11 +1,9 @@
-
 #include <iostream>
 #include <cstdlib>
-#include <windows.h>
-//#include "CubeAlgorith.h"
+
 
 using namespace std;
-int numberOfCell = 9;
+
 bool sim_only = false;
 bool cube_solved = true;
 
