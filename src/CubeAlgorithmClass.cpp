@@ -9,33 +9,33 @@ CubeAlgorithmClass::CubeAlgorithmClass(Cube cube)
 {
 	for (int i = 0; i < numberOfWalls; i++)
 	{
+		Color wallColor = cube.getWall(i).getColor(4);
 
 		for (int j = 0;j < numberOfCells;j++)
 		{
-			Color color= cube.getWall(i).getColor(j);
+			Color color = cube.getWall(i).getColor(j);
 
-			if (color == RED)//red 3
+			if (wallColor == RED)//red 3
 			{
 				input(j, red_side, color);
 			}
-			else if (color == ORANGE)//orange 4
+			else if (wallColor == ORANGE)//orange 4
 			{
 				input(j, orange_side, color);
 			}
-			else if (color == YELLOW )//yellow 1
+			else if (wallColor == YELLOW )//yellow 1
 			{
 				input(j, yellow_side, color);
 			}
-			else if (color == GREEN)//green 2
+			else if (wallColor == GREEN)//green 2
 			{
 				input(j, green_side, color);
 			}
-			else if (color == BLUE)
+			else if (wallColor == BLUE)
 			{
 				input(j, blue_side, color);//blue 5
-
 			}
-			else if (color == WHITE)//white 0
+			else if (wallColor == WHITE)//white 0
 			{
 				input(j, white_side, color);
 			}
