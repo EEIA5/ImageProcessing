@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
             if (cube.isComplete()){
                 cout<<"Scanning complete!"<<endl;
                 break;
-            }
+			}
         }
         if (cube.isComplete()){
             cout<<"Solving..."<<endl;

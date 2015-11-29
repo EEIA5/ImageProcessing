@@ -43,7 +43,7 @@ Color Cube::getCell(unsigned w, unsigned c){
 bool Cube::isComplete(){
     for (size_t wall = 0; wall < numberOfWalls; wall++){
         for (size_t cell = 0; cell < numberOfCells; cell++){
-            if (walls[wall].getColor(cell) == UNDEF || walls[wall].isLocked()){
+            if (walls[wall].getColor(cell) == UNDEF || !walls[wall].isLocked()){
                 return false;
             }
         }
