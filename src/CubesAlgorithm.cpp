@@ -788,7 +788,7 @@ void scramble() // random 25 moves
 			break;
 		}*/
 	}
-	right();
+	//right();
 }
 
 void print_cube(char cube_side[])
@@ -2597,7 +2597,7 @@ void auto_test(bool test_ongoing)
 	{
 		printf("Test number: ");
 		printf("%d", num_of_tests_ran);
-		scramble();
+		//scramble();
 		//Sleep(10000);
 		print_whole_cube();
 		solve_stage = 1;
