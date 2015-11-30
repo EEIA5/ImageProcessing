@@ -26,8 +26,8 @@ int main(int argc, char* argv[]){
         }
         if (cube.isComplete()){
             cout<<"Solving..."<<endl;
-            CubeAlgorithmClass cubeAlgorithmClass(cube);
-            cubeAlgorithmClass.start();
+            CubeAlgorithmClass cubeAlgorithmClass;
+            cubeAlgorithmClass.start(cube);
         }
 
 

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cstdlib>
-
+#include "Cube.h"
 
 using namespace std;
 
@@ -53,6 +53,7 @@ extern void cube_decide_oll();
 extern void cube_decide_pll();
 extern void cube_decide_solved();
 extern void cube_decide();
-extern void auto_test(bool test_ongoing);
+extern void auto_test(Cube cube);
+extern void input(int i, char * tab, Color color);
 
 #endif // CUBESALGORITHM_H_INCLUDED

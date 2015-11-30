@@ -7,8 +7,8 @@ const unsigned short ORANGE_MAX = 22;
 const unsigned short YELLOW_MIN = 23;
 const unsigned short YELLOW_MAX = 38;
 
-const unsigned short GREEN_MIN = 49;
-const unsigned short GREEN_MAX = 85;
+const unsigned short GREEN_MIN = 39;
+const unsigned short GREEN_MAX = 95;
 
 const unsigned short BLUE_MIN = 100;
 const unsigned short BLUE_MAX = 120;
