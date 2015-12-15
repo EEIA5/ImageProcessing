@@ -1,14 +1,11 @@
 #include <iostream>
 #include <cstdlib>
-#include "Cube.h"
-#include "Constants.h"
 
 
 using namespace std;
 
 bool sim_only = false;
 bool cube_solved = true;
-int solve_stage = 1;
 
 char yellow_side[9] = { 'y', 'y', 'y',
 'y', 'y', 'y',
@@ -36,27 +33,33 @@ char orange_side[9] = { 'o', 'o', 'o',
 
 
 
+void left()
+{
+	printf("L', ");
 
 
-void left(){
 
-	printf("L, ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
 	char r_white_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
 
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
 
@@ -76,7 +79,8 @@ void left(){
 	green_side[5] = r_yellow_side[3];
 	green_side[2] = r_yellow_side[6];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_red_side[x] = red_side[x];
 	}
 
@@ -90,24 +94,29 @@ void left(){
 	red_side[7] = r_red_side[5];
 	red_side[8] = r_red_side[2];
 }
-void left_inverted(){
-
-	printf("L', ");
+void left_inverted()
+{
+	printf("L, ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
 	char r_white_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
 
@@ -127,7 +136,8 @@ void left_inverted(){
 	green_side[5] = r_white_side[3];
 	green_side[2] = r_white_side[6];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_red_side[x] = red_side[x];
 	}
 
@@ -141,25 +151,31 @@ void left_inverted(){
 	red_side[7] = r_red_side[3];
 	red_side[8] = r_red_side[6];
 }
+void right() {
+	printf("R', ");
 
-void right(){
 
-	printf("R, ");
+
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
 	char r_white_side[9];
 	char r_green_side[9];
 	char r_orange_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
 
@@ -179,7 +195,8 @@ void right(){
 	green_side[3] = r_white_side[5];
 	green_side[0] = r_white_side[8];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_orange_side[x] = orange_side[x];
 	}
 
@@ -193,24 +210,30 @@ void right(){
 	orange_side[7] = r_orange_side[5];
 	orange_side[8] = r_orange_side[2];
 }
-void right_inverted(){
+void right_inverted()
+{
+	printf("R, ");
 
-	printf("R', ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
 	char r_white_side[9];
 	char r_green_side[9];
 	char r_orange_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
 
@@ -230,7 +253,8 @@ void right_inverted(){
 	green_side[3] = r_yellow_side[5];
 	green_side[0] = r_yellow_side[8];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_orange_side[x] = orange_side[x];
 	}
 
@@ -244,9 +268,11 @@ void right_inverted(){
 	orange_side[7] = r_orange_side[3];
 	orange_side[8] = r_orange_side[6];
 }
-void down(){
+void down()
+{
+	printf("D', ");
 
-	printf("D, ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
 	char r_orange_side[9];
@@ -285,7 +311,8 @@ void down(){
 	white_side[1] = r_orange_side[5];
 	white_side[2] = r_orange_side[8];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_green_side[x] = green_side[x];
 	}
 	// reassign colours on face
@@ -299,24 +326,30 @@ void down(){
 	green_side[7] = r_green_side[5];
 	green_side[8] = r_green_side[2];
 }
-void down_inverted(){
+void down_inverted()
+{
+	printf("D, ");
 
-	printf("D', ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
 	char r_orange_side[9];
 	char r_red_side[9];
 	char r_green_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -336,7 +369,8 @@ void down_inverted(){
 	orange_side[5] = r_white_side[1];
 	orange_side[8] = r_white_side[2];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_green_side[x] = green_side[x];
 	}
 
@@ -350,24 +384,29 @@ void down_inverted(){
 	green_side[7] = r_green_side[3];
 	green_side[8] = r_green_side[6];
 }
-void up(){
-
-	printf("U, ");
+void up()
+{
+	printf("U', ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
 	char r_orange_side[9];
 	char r_red_side[9];
 	char r_blue_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -387,7 +426,8 @@ void up(){
 	orange_side[3] = r_white_side[7];
 	orange_side[6] = r_white_side[8];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_blue_side[x] = blue_side[x];
 	}
 
@@ -401,24 +441,29 @@ void up(){
 	blue_side[7] = r_blue_side[5];
 	blue_side[8] = r_blue_side[2];
 }
-void up_inverted(){
-
-	printf("U', ");
+void up_inverted()
+{
+	printf("U, ");
+	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
 	char r_orange_side[9];
 	char r_red_side[9];
 	char r_blue_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_yellow_side[i] = yellow_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_white_side[i] = white_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -438,7 +483,8 @@ void up_inverted(){
 	white_side[7] = r_orange_side[3];
 	white_side[6] = r_orange_side[0];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_blue_side[x] = blue_side[x];
 	}
 
@@ -452,25 +498,32 @@ void up_inverted(){
 	blue_side[7] = r_blue_side[3];
 	blue_side[8] = r_blue_side[6];
 }
-
-void front(){
-
+void front()
+{
 	printf("F, ");
+
+
+
+	// Cube simulation
 	char r_blue_side[9];
 	char r_orange_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
 	char r_yellow_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -490,7 +543,9 @@ void front(){
 	orange_side[7] = r_blue_side[7];
 	orange_side[8] = r_blue_side[8];
 
-	for (int x = 0; x < 9; x++){
+
+	for (int x = 0; x < 9; x++)
+	{
 		r_yellow_side[x] = yellow_side[x];
 	}
 
@@ -504,25 +559,32 @@ void front(){
 	yellow_side[7] = r_yellow_side[5];
 	yellow_side[8] = r_yellow_side[2];
 }
-
-void front_inverted(){
-
+void front_inverted()
+{
 	printf("F', ");
+
+
+
+	// Cube simulation
 	char r_blue_side[9];
 	char r_orange_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
 	char r_yellow_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -542,7 +604,8 @@ void front_inverted(){
 	orange_side[7] = r_green_side[7];
 	orange_side[8] = r_green_side[8];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_yellow_side[x] = yellow_side[x];
 	}
 
@@ -556,25 +619,31 @@ void front_inverted(){
 	yellow_side[7] = r_yellow_side[3];
 	yellow_side[8] = r_yellow_side[6];
 }
-
-void back(){
-
+void back()
+{
 	printf("B, ");
+
+
+	// Cube simulation
 	char r_blue_side[9];
 	char r_orange_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
 	char r_white_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -594,7 +663,8 @@ void back(){
 	orange_side[1] = r_green_side[1];
 	orange_side[2] = r_green_side[2];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_white_side[x] = white_side[x];
 	}
 
@@ -608,25 +678,32 @@ void back(){
 	white_side[7] = r_white_side[5];
 	white_side[8] = r_white_side[2];
 }
-
-void back_inverted(){
-
+void back_inverted()
+{
 	printf("B', ");
+
+
+
+	// Cube simulation
 	char r_blue_side[9];
 	char r_orange_side[9];
 	char r_green_side[9];
 	char r_red_side[9];
 	char r_white_side[9];
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_blue_side[i] = blue_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_orange_side[i] = orange_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_green_side[i] = green_side[i];
 	}
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 9; i++)
+	{
 		r_red_side[i] = red_side[i];
 	}
 
@@ -646,7 +723,8 @@ void back_inverted(){
 	orange_side[1] = r_blue_side[1];
 	orange_side[2] = r_blue_side[2];
 
-	for (int x = 0; x < 9; x++){
+	for (int x = 0; x < 9; x++)
+	{
 		r_white_side[x] = white_side[x];
 	}
 
@@ -661,13 +739,69 @@ void back_inverted(){
 	white_side[8] = r_white_side[6];
 }
 
-void print_cube(char cube_side[]){
 
-	for (int i = 0; i < 1; i++){
+void scramble() // random 25 moves
+{
+	//printf("\n Scramble: ");
+	int move;
+	for (int j = 0; j < 25; j++)
+	{
+		/*move = rand() % 12 + 1;
+		//Serial.println(move);
+		switch (move)
+		{
+		case 1:
+		right();
+		break;
+		case 2:
+		right_inverted();
+		break;
+		case 3:
+		left();
+		break;
+		case 4:
+		left_inverted();
+		break;
+		case 5:
+		up();
+		break;
+		case 6:
+		up_inverted();
+		break;
+		case 7:
+		down();
+		break;
+		case 8:
+		down_inverted();
+		break;
+		case 9:
+		front();
+		break;
+		case 10:
+		front_inverted();
+		break;
+		case 11:
+		back();
+		break;
+		case 12:
+		back_inverted();
+		break;
+		}*/
+	}
+
+}
+
+void print_cube(char cube_side[])
+{
+	// make a for loop for this
+	for (int i = 0; i < 1; i++)
+	{
 		printf("\r");
 	}
+
 	printf("Face: ");
-	printf("%c\n", cube_side[4]);
+	printf("%c", cube_side[4]);
+
 	for (int i = 0; i < 9; i = i + 3)
 	{
 		printf("|");
@@ -676,65 +810,86 @@ void print_cube(char cube_side[]){
 		printf("%c", cube_side[i + 1]);
 		printf("|");
 		printf("%c", cube_side[i + 2]);
-		printf("|\n");
+		printf("|");
 	}
-	printf("\n\n");
 }
 
 
-void print_whole_cube(){
-
+void print_whole_cube()
+{
+	printf("\n");
 	print_cube(yellow_side);
+	printf("\n");
 	print_cube(white_side);
+	printf("\n");
 	print_cube(blue_side);
+	printf("\n");
 	print_cube(red_side);
+	printf("\n");
 	print_cube(green_side);
+	printf("\n");
 	print_cube(orange_side);
 }
 
+int solve_stage = 1;
 
 
-void flip_cube(char cube_rotation){
-
-	switch (cube_rotation){
+void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
+{
+	switch (cube_rotation)
+	{
 		char r_blue_side[9];
 		char r_orange_side[9];
 		char r_green_side[9];
 		char r_red_side[9];
 		char r_white_side[9];
 		char r_yellow_side[9];
-	case 'F':
+	case 'F': // CW on F
 		printf("[Cube Flip: CW on F], ");
-		for (int i = 0; i < 9; i++){
+
+
+		// cube simulation
+		for (int i = 0; i < 9; i++)
+		{
 			r_blue_side[i] = blue_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_orange_side[i] = orange_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_green_side[i] = green_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_red_side[i] = red_side[i];
 		}
-		for (int x = 0; x < 9; x++){
+
+		for (int x = 0; x < 9; x++)
+		{
 			r_white_side[x] = white_side[x];
 		}
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_yellow_side[x] = yellow_side[x];
 		}
 
-
-		for (int i = 0; i < 9; i++){
+		// assign copies to real faces
+		for (int i = 0; i < 9; i++)
+		{
 			orange_side[i] = r_blue_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			green_side[i] = r_orange_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			red_side[i] = r_green_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			blue_side[i] = r_red_side[i];
 		}
 
@@ -758,40 +913,51 @@ void flip_cube(char cube_rotation){
 		yellow_side[7] = r_yellow_side[5];
 		yellow_side[8] = r_yellow_side[2];
 		break;
-	case 'f':
-
+	case 'f': // CCW on F
 		printf("[Cube Flip: CCW on F], ");
-		for (int i = 0; i < 9; i++){
+
+		// assign colors to a copy of the face
+		for (int i = 0; i < 9; i++)
+		{
 			r_blue_side[i] = blue_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_orange_side[i] = orange_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_green_side[i] = green_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_red_side[i] = red_side[i];
 		}
 
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_white_side[x] = white_side[x];
 		}
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_yellow_side[x] = yellow_side[x];
 		}
 
-
-		for (int i = 0; i < 9; i++){
+		// assign copies to real faces
+		for (int i = 0; i < 9; i++)
+		{
 			red_side[i] = r_blue_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			blue_side[i] = r_orange_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			orange_side[i] = r_green_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			green_side[i] = r_red_side[i];
 		}
 
@@ -816,26 +982,35 @@ void flip_cube(char cube_rotation){
 		white_side[8] = r_white_side[2];
 
 		break;
-	case 'U':
+	case 'U': // CW on U
 
 		printf("[Cube Flip: CW on U], ");
-		for (int i = 0; i < 9; i++){
+
+
+		for (int i = 0; i < 9; i++)
+		{
 			r_white_side[i] = white_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_orange_side[i] = orange_side[i];
+
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_yellow_side[i] = yellow_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_red_side[i] = red_side[i];
 		}
 
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_blue_side[x] = blue_side[x];
 		}
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_green_side[x] = green_side[x];
 		}
 
@@ -848,6 +1023,7 @@ void flip_cube(char cube_rotation){
 		orange_side[6] = r_white_side[2];
 		orange_side[7] = r_white_side[1];
 		orange_side[8] = r_white_side[0];
+
 
 		yellow_side[0] = r_orange_side[6];
 		yellow_side[1] = r_orange_side[3];
@@ -899,26 +1075,32 @@ void flip_cube(char cube_rotation){
 		blue_side[7] = r_blue_side[5];
 		blue_side[8] = r_blue_side[2];
 	case 'u':
-
 		printf("[Cube Flip: CCW on U], ");
-		for (int i = 0; i < 9; i++){
+
+		for (int i = 0; i < 9; i++)
+		{
 			r_white_side[i] = white_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_orange_side[i] = orange_side[i];
+
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_yellow_side[i] = yellow_side[i];
 		}
-		for (int i = 0; i < 9; i++){
+		for (int i = 0; i < 9; i++)
+		{
 			r_red_side[i] = red_side[i];
 		}
 
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_blue_side[x] = blue_side[x];
 		}
-
-		for (int x = 0; x < 9; x++){
+		for (int x = 0; x < 9; x++)
+		{
 			r_green_side[x] = green_side[x];
 		}
 
@@ -931,6 +1113,7 @@ void flip_cube(char cube_rotation){
 		red_side[8] = r_white_side[6];
 		red_side[5] = r_white_side[7];
 		red_side[2] = r_white_side[8];
+
 
 		white_side[0] = r_orange_side[6];
 		white_side[1] = r_orange_side[3];
@@ -987,9 +1170,14 @@ void flip_cube(char cube_rotation){
 	}
 }
 
-void fix_cross_instance_1(){
+
+///////////////////// Cube Algorithms ///////////////////////////
+void fix_cross_instance_1() // bad pieces up and right
+{
 
 	printf("\n	Fix Cross Instance 1: ");
+
+	// cube simulation
 	sim_only = true;
 	right();
 	right();
@@ -1001,10 +1189,10 @@ void fix_cross_instance_1(){
 	right();
 	sim_only = false;
 }
-
-void fix_cross_instance_2(){
-
+void fix_cross_instance_2() // bad pieces up and down
+{
 	printf("\n	Fix Cross Instance 2: ");
+	// cube simulation
 	sim_only = true;
 	up();
 	up();
@@ -1018,36 +1206,44 @@ void fix_cross_instance_2(){
 	up();
 	sim_only = false;
 }
-void fix_corners_instance_1(){
-
+void fix_corners_instance_1() // top left
+{
 	printf("\n	Fix Corners Instance 1: ");
+
+	// cube simulation
 	sim_only = true;
 	up();
 	back();
 	up_inverted();
 	sim_only = false;
 }
-void fix_corners_instance_2(){
-
+void fix_corners_instance_2() // top right
+{
 	printf("\n	Fix Corners Instance 2: ");
+
+	// cube simulation
 	sim_only = true;
 	up_inverted();
 	back_inverted();
 	up();
 	sim_only = false;
 }
-void fix_corners_instance_3(){
-
+void fix_corners_instance_3()
+{
 	printf("\n	Fix Corners Instance 3 (bring yellow piece up): ");
+
+	// cube simulation
 	sim_only = true;
 	left_inverted();
 	back();
 	left();
 	sim_only = false;
 }
-void add_edges_instance_1(){
-
+void add_edges_instance_1() // 2 left
+{
 	printf("\n	Add Edges Instance 1: ");
+
+	// cube simulation
 	sim_only = true;
 	back_inverted();
 	left_inverted();
@@ -1059,9 +1255,10 @@ void add_edges_instance_1(){
 	up_inverted();
 	sim_only = false;
 }
-void add_edges_instance_2(){
-
+void add_edges_instance_2() // 2 right
+{
 	printf("\n	Add edges Instance 2: ");
+	// cube simulation
 	sim_only = true;
 	back();
 	right();
@@ -1073,10 +1270,11 @@ void add_edges_instance_2(){
 	up();
 	sim_only = false;
 }
-
-void add_edges_instance_3(){
-
+void add_edges_instance_3()
+{
 	printf("\n	Add edges Instance 3: ");
+
+	// cube simulation
 	sim_only = true;
 	back_inverted();
 	up_inverted();
@@ -1088,9 +1286,11 @@ void add_edges_instance_3(){
 	right_inverted();
 	sim_only = false;
 }
-void white_cross_on_top(){
-
+void white_cross_on_top()
+{
 	printf("\n	White Cross On Top: ");
+
+	// cube simulation
 	sim_only = true;
 	right_inverted();
 	back_inverted();
@@ -1100,10 +1300,11 @@ void white_cross_on_top(){
 	right();
 	sim_only = false;
 }
-
-void finish_white_face_instance_1(){
-
+void finish_white_face_instance_1()
+{
 	printf("\n	Finish White Face Instance 1: ");
+
+	// cube simulation
 	sim_only = true;
 	right();
 	back();
@@ -1115,9 +1316,11 @@ void finish_white_face_instance_1(){
 	right_inverted();
 	sim_only = false;
 }
-void finish_white_face_instance_2(){
-
+void finish_white_face_instance_2()
+{
 	printf("\n	Finish White Face Instance 2: ");
+
+	// cube simulation
 	sim_only = true;
 	left_inverted();
 	back_inverted();
@@ -1129,10 +1332,11 @@ void finish_white_face_instance_2(){
 	left();
 	sim_only = false;
 }
-
-void green_on_right(){
-
+// insert top layer corners
+void green_on_right()
+{
 	printf("\n	Green On Right: ");
+	// cube simulation
 	sim_only = true;
 	right_inverted();
 	up();
@@ -1148,9 +1352,10 @@ void green_on_right(){
 	right();
 	sim_only = false;
 }
-void green_on_left(){
-
+void green_on_left()
+{
 	printf("\n	Green On Left: ");
+	// cube simulation
 	sim_only = true;
 	left();
 	up_inverted();
@@ -1166,274 +1371,375 @@ void green_on_left(){
 	left_inverted();
 	sim_only = false;
 }
-
-void cw_rotation(){
-
+// insert top layer edges
+void cw_rotation() // can also be used for 4 bad edges
+{
 	printf("\n	CW Rotation: ");
 	finish_white_face_instance_1();
-	flip_cube('f');
+	flip_cube('f');// rotate cube: right side = front side
 	finish_white_face_instance_2();
-	flip_cube('F');
+	flip_cube('F');// rotate cube back to original state: left side = front side
 }
-
-void ccw_rotation(){
-
+void ccw_rotation()
+{
 	printf("\n	CCW Rotation: ");
 	finish_white_face_instance_2();
-	flip_cube('F');
+	flip_cube('F');// rotate cube: left side = front side
 	finish_white_face_instance_1();
 	flip_cube('f');
 }
 
-void cube_decide_cross(){
 
+
+void cube_decide_cross()
+{
 	printf("\n ");
 	printf(" ");
 	printf("Cross: ");
 	if (yellow_side[1] == 'y' &&
 		yellow_side[3] == 'y' &&
 		yellow_side[5] == 'y' &&
-		yellow_side[7] == 'y'){
-
+		yellow_side[7] == 'y')
+	{
 		solve_stage = 2;
 		printf("Solved.");
 		//test_ongoing = false;
 	}
-    else if (solve_stage == 1){
-
-		if (blue_side[3] == 'y'){
-			for (int x = 0; x < 3; x++) {
-				if (yellow_side[3] != 'y'){
+	///////////// move the pieces from the sides up /////////////// /// should turn this into a function later(blue_side, moves)
+	else if (solve_stage == 1)
+	{
+		// move from blue_side[3]
+		if (blue_side[3] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[3] != 'y')
+				{
 					left();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (blue_side[5] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[5] != 'y'){
+		// move from blue_side[5]
+		else if (blue_side[5] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[5] != 'y')
+				{
 					right_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (red_side[5] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[1] != 'y'){
+		// move from red_side[5]
+		else if (red_side[5] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[1] != 'y')
+				{
 					up_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (red_side[3] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[7] != 'y'){
+		// move from red_side[3]
+		else if (red_side[3] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[7] != 'y')
+				{
 					down();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (green_side[5] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[3] != 'y'){
+		// move from green_side[5]
+		else if (green_side[5] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[3] != 'y')
+				{
 					left_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (green_side[3] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[5] != 'y'){
+
+		// move from green_side[3]
+		else if (green_side[3] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[5] != 'y')
+				{
 					right();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (orange_side[5] == 'y'){
-			for (int x = 0; x < 3; x++) {
-				if (yellow_side[7] != 'y'){
+		// move from orange_side[5]
+		else if (orange_side[5] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[7] != 'y')
+				{
 					down_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (orange_side[3] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[1] != 'y'){
+		// move from orange_side[3]
+		else if (orange_side[3] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[1] != 'y')
+				{
 					up();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (white_side[1] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[7] != 'y'){
+		// move from white_side[1]
+		else if (white_side[1] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[7] != 'y')
+				{
 					down();
 					down();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (white_side[7] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[1] != 'y'){
+		// move from white_side[7]
+		else if (white_side[7] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[1] != 'y')
+				{
 					up();
 					up();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (white_side[3] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[3] != 'y'){
+		// move from white_side[3]
+		else if (white_side[3] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[3] != 'y')
+				{
 					left();
 					left();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (white_side[5] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[5] != 'y'){
+		// move from white_side[5]
+		else if (white_side[5] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[5] != 'y')
+				{
 					right();
 					right();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (blue_side[1] == 'y'){
-			for (int x = 0; x < 3; x++) {
-				if (yellow_side[1] != 'y'){
+		/////////////////
+		//////////////
+		///////////////////////// get the piece from 2- move spots, like blue_side[7]
+		// blue_side[1]
+		else if (blue_side[1] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[1] != 'y')
+				{
 					up();
 					front();
 					right_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (blue_side[7] == 'y'){
-			if (yellow_side[1] != 'y'){
+		// blue_side[7]
+		else if (blue_side[7] == 'y')
+		{
+			if (yellow_side[1] != 'y')
+			{
 				up_inverted();
 				front();
 				right_inverted();
 			}
-			else{
+			else
+			{
 				up_inverted();
 			}
 		}
-		else if (red_side[1] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[3] != 'y'){
+		// red_side[1]
+		else if (red_side[1] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[3] != 'y')
+				{
 					left();
 					front();
 					up_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (red_side[7] == 'y'){
-			if (yellow_side[3] != 'y'){
+		// red_side[7]
+		else if (red_side[7] == 'y')
+		{
+			if (yellow_side[3] != 'y')
+			{
 				left_inverted();
 				front();
 				up_inverted();
 			}
-			else{
+			else
+			{
 				left_inverted();
 			}
 		}
-		else if (green_side[1] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[7] != 'y'){
+		// green_side[1]
+		else if (green_side[1] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[7] != 'y')
+				{
 					down();
 					front();
 					left_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (green_side[7] == 'y'){
-			if (yellow_side[7] != 'y'){
+		// green_side[7]
+		else if (green_side[7] == 'y')
+		{
+			if (yellow_side[7] != 'y')
+			{
 				down();
 				front_inverted();
 				right();
 			}
-			else{
+			else
+			{
 				down();
 			}
 		}
-		else if (orange_side[1] == 'y'){
-			for (int x = 0; x < 3; x++){
-				if (yellow_side[5] != 'y'){
+		// orange_side[1]
+		else if (orange_side[1] == 'y')
+		{
+			for (int x = 0; x < 3; x++) // rotate cube four times, or until there is an empty space
+			{
+				if (yellow_side[5] != 'y')
+				{
 					right();
 					front();
 					down_inverted();
-					x = 3;
+					x = 3; // end loop since yellow piece has reached the top
 				}
-				else{
+				else
+				{
 					front();
 				}
 			}
 		}
-		else if (orange_side[7] == 'y'){
-			if (yellow_side[5] != 'y'){
+		// green_side[7]
+		else if (orange_side[7] == 'y')
+		{
+			if (yellow_side[5] != 'y')
+			{
 				right_inverted();
 				front();
 				down_inverted();
 			}
-			else{
+			else
+			{
 				right_inverted();
 			}
 		}
 	}
 }
-
-void cube_decide_whole_cross(){
-
+void cube_decide_whole_cross()
+{
 	printf("\n ");
 	printf(" ");
 	printf("Whole Cross: ");
@@ -1441,82 +1747,108 @@ void cube_decide_whole_cross(){
 		blue_side[7] == 'b' &&
 		red_side[7] == 'r' &&
 		green_side[7] == 'g' &&
-		orange_side[7] == 'o'){
-
+		orange_side[7] == 'o')
+	{
 		printf("Solved.");
 		solve_stage = 3;
 	}
-	else if (solve_stage == 2 && blue_side[7] != 'b' && red_side[7] != 'r' && green_side[7] == 'g' && orange_side[7] == 'o'){
+	// green and orange are good
+	else if (solve_stage == 2 && blue_side[7] != 'b' && red_side[7] != 'r' && green_side[7] == 'g' && orange_side[7] == 'o')
+	{
 		flip_cube('F');
 		fix_cross_instance_1();
 		flip_cube('f');
 	}
-	else if (solve_stage == 2 && blue_side[7] != 'b' && red_side[7] == 'r' && green_side[7] != 'g' && orange_side[7] == 'o'){
+	// red and orange are good
+	else if (solve_stage == 2 && blue_side[7] != 'b' && red_side[7] == 'r' && green_side[7] != 'g' && orange_side[7] == 'o')
+	{
 		fix_cross_instance_2();
 	}
-	else if (solve_stage == 2 == true && blue_side[7] != 'b' && red_side[7] == 'r' && green_side[7] == 'g' && orange_side[7] != 'o'){
+	// red and green are good
+	else if (solve_stage == 2 == true && blue_side[7] != 'b' && red_side[7] == 'r' && green_side[7] == 'g' && orange_side[7] != 'o')
+	{
 		fix_cross_instance_1();
 	}
-	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] != 'r' && green_side[7] != 'g' && orange_side[7] == 'o'){
+	// blue and orange are good
+	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] != 'r' && green_side[7] != 'g' && orange_side[7] == 'o')
+	{
 		flip_cube('F');
 		flip_cube('F');
 		fix_cross_instance_1();
 		flip_cube('f');
 		flip_cube('f');
 	}
-	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] != 'r' && green_side[7] == 'g' && orange_side[7] != 'o'){
+	// blue and green are good
+	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] != 'r' && green_side[7] == 'g' && orange_side[7] != 'o')
+	{
 		flip_cube('F');
 		fix_cross_instance_2();
 		flip_cube('f');
 	}
-	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] == 'r' && green_side[7] != 'g' && orange_side[7] != 'o'){
+	// red and blue are good
+	else if (solve_stage == 2 && blue_side[7] == 'b' && red_side[7] == 'r' && green_side[7] != 'g' && orange_side[7] != 'o')
+	{
 		flip_cube('f');
 		fix_cross_instance_1();
 		flip_cube('F');
 	}
-	else if (solve_stage == 2){
+	// none match, cross in done but whole cross isn't
+	else if (solve_stage == 2)
+	{
 		front();
 	}
-	else{
+	else
+	{
 		printf("Error in whole_cross");
 	}
 }
-
-void cube_decide_corners(){
+void cube_decide_corners() // needs fixing, maybe yellows at bottom portion
+{
 	printf("\n ");
 	printf(" ");
 	printf("Corners (First Layer): ");
+	// First layer is done correctly
 	if (solve_stage == 3 && yellow_side[0] == 'y' && blue_side[6] == 'b' && yellow_side[2] == 'y' && orange_side[6] == 'o' &&
-		green_side[6] == 'g' && yellow_side[6] == 'y' && orange_side[6] == 'o' && yellow_side[8] == 'y' && red_side[6] == 'r'){
-
+		green_side[6] == 'g' && yellow_side[6] == 'y' && orange_side[6] == 'o' && yellow_side[8] == 'y' && red_side[6] == 'r')
+	{
 		printf("Solved.");
 		solve_stage = 4;
 	}
-	else if (solve_stage == 3){
+	else if (solve_stage == 3)
+	{
+		////////// if THERE ARE yellow on top
 		if (blue_side[0] == 'y' || blue_side[2] == 'y' || red_side[0] == 'y' || red_side[2] == 'y' ||
 			green_side[0] == 'y' || green_side[2] == 'y' || orange_side[0] == 'y' || orange_side[2] == 'y' ||
-			white_side[0] == 'y' || white_side[2] == 'y' || white_side[6] == 'y' || white_side[8] == 'y'){
-
-			if (blue_side[2] == 'y' && white_side[8] == 'b' && orange_side[0] == 'o'){
+			white_side[0] == 'y' || white_side[2] == 'y' || white_side[6] == 'y' || white_side[8] == 'y')
+		{
+			////////// Do all possible cases for corner (4×3):
+			//////// 3 cases for the blue/orange sides
+			if (blue_side[2] == 'y' && white_side[8] == 'b' && orange_side[0] == 'o')
+			{
 				fix_corners_instance_2();
 			}
-			else if (blue_side[2] == 'o' && white_side[8] == 'y' && orange_side[0] == 'b'){
+			else if (blue_side[2] == 'o' && white_side[8] == 'y' && orange_side[0] == 'b')
+			{
 				fix_corners_instance_2();
 				fix_corners_instance_2();
 				back();
 				fix_corners_instance_2();
 			}
-			else if (blue_side[2] == 'b' && white_side[8] == 'o' && orange_side[0] == 'y'){
+			else if (blue_side[2] == 'b' && white_side[8] == 'o' && orange_side[0] == 'y')
+			{
 				flip_cube('f');
 				fix_corners_instance_1();
 				flip_cube('F');
 			}
-			else if (orange_side[2] == 'y' && white_side[2] == 'o' && green_side[0] == 'g'){
+			//////// 3 cases for the orange/green sides
+			else if (orange_side[2] == 'y' && white_side[2] == 'o' && green_side[0] == 'g')
+			{
 				flip_cube('f');
 				fix_corners_instance_2();
 				flip_cube('F');
 			}
-			else if (orange_side[2] == 'g' && white_side[2] == 'y' && green_side[0] == 'o'){
+			else if (orange_side[2] == 'g' && white_side[2] == 'y' && green_side[0] == 'o')
+			{
 				flip_cube('f');
 				fix_corners_instance_2();
 				fix_corners_instance_2();
@@ -1524,21 +1856,25 @@ void cube_decide_corners(){
 				fix_corners_instance_2();
 				flip_cube('F');
 			}
-			else if (orange_side[2] == 'o' && white_side[2] == 'g' && green_side[0] == 'y'){
+			else if (orange_side[2] == 'o' && white_side[2] == 'g' && green_side[0] == 'y')
+			{
 				flip_cube('F');
 				flip_cube('F');
 				fix_corners_instance_1();
 				flip_cube('f');
 				flip_cube('f');
 			}
-			else if (green_side[2] == 'y' && white_side[0] == 'g' && red_side[0] == 'r'){
+			//////// 3 cases for the green/red sides
+			else if (green_side[2] == 'y' && white_side[0] == 'g' && red_side[0] == 'r')
+			{
 				flip_cube('F');
 				flip_cube('F');
 				fix_corners_instance_2();
 				flip_cube('f');
 				flip_cube('f');
 			}
-			else if (green_side[2] == 'r' && white_side[0] == 'y' && red_side[0] == 'g'){
+			else if (green_side[2] == 'r' && white_side[0] == 'y' && red_side[0] == 'g')
+			{
 				flip_cube('F');
 				flip_cube('F');
 				fix_corners_instance_2();
@@ -1548,156 +1884,200 @@ void cube_decide_corners(){
 				flip_cube('f');
 				flip_cube('f');
 			}
-			else if (green_side[2] == 'g' && white_side[0] == 'r' && red_side[0] == 'y'){
+			else if (green_side[2] == 'g' && white_side[0] == 'r' && red_side[0] == 'y')
+			{
 				flip_cube('F');
 				fix_corners_instance_1();
 				flip_cube('f');
 			}
-            else if (red_side[2] == 'y' && white_side[6] == 'r' && blue_side[0] == 'b'){
+			//////// 3 cases for the red/blue sides
+			else if (red_side[2] == 'y' && white_side[6] == 'r' && blue_side[0] == 'b')
+			{
 				flip_cube('F');
 				fix_corners_instance_2();
 				flip_cube('f');
 			}
-			else if (red_side[2] == 'b' && white_side[6] == 'y' && blue_side[0] == 'r'){
+			else if (red_side[2] == 'b' && white_side[6] == 'y' && blue_side[0] == 'r')
+			{
 				fix_corners_instance_1();
 				fix_corners_instance_1();
 				back_inverted();
 				fix_corners_instance_1();
 			}
-			else if (red_side[2] == 'r' && white_side[6] == 'b' && blue_side[0] == 'y'){
+			else if (red_side[2] == 'r' && white_side[6] == 'b' && blue_side[0] == 'y')
+			{
 				fix_corners_instance_1();
 			}
-			else{
-				back();
+			else
+			{
+				back();  // move yellow on top of correct position
 			}
 		}
+		////////// if there are NO yellows on top and first layer isn't solved already
 		else if (yellow_side[0] != 'y' || red_side[8] != 'r' || blue_side[6] != 'b' ||
 			yellow_side[2] != 'y' || orange_side[6] != 'o' || blue_side[8] != 'b' ||
 			yellow_side[8] != 'y' || orange_side[8] != 'o' || green_side[6] != 'g' ||
-			yellow_side[6] != 'y' || red_side[6] != 'r' || blue_side[8] != 'g'){
-
-			if (yellow_side[0] != 'y' || red_side[8] != 'r' || blue_side[6] != 'b'){
+			yellow_side[6] != 'y' || red_side[6] != 'r' || blue_side[8] != 'g')
+		{
+			//////////// Bring all yellow corners up:
+			// Blue and red corner
+			if (yellow_side[0] != 'y' || red_side[8] != 'r' || blue_side[6] != 'b')
+			{
 				fix_corners_instance_3();
 			}
-			else if (yellow_side[2] != 'y' || orange_side[6] != 'o' || blue_side[8] != 'b'){
+			// blue and orange corner
+			else if (yellow_side[2] != 'y' || orange_side[6] != 'o' || blue_side[8] != 'b')
+			{
 				flip_cube('f');
 				fix_corners_instance_3();
 				flip_cube('F');
 			}
-			else if (yellow_side[8] != 'y' || orange_side[8] != 'o' || green_side[6] != 'g'){
+			// Orange and green corner
+			else if (yellow_side[8] != 'y' || orange_side[8] != 'o' || green_side[6] != 'g')
+			{
 				flip_cube('f');
 				flip_cube('f');
 				fix_corners_instance_3();
 				flip_cube('F');
 				flip_cube('F');
 			}
-			else if (yellow_side[6] != 'y' || red_side[6] != 'r' || blue_side[8] != 'g'){
+			// Green and red corner
+			else if (yellow_side[6] != 'y' || red_side[6] != 'r' || blue_side[8] != 'g')
+			{
 				flip_cube('F');
 				fix_corners_instance_3();
 				flip_cube('f');
 			}
 		}
-		else{
+
+		else
+		{
 			printf("First Layer not Solved.");
 		}
 	}
 }
-void cube_decide_add_edges(){
-
+void cube_decide_add_edges()
+{
 	printf("\n ");
 	printf(" ");
 	printf("Edges (Second Layer): ");
-
+	///// Second layer done
 	if (solve_stage == 4 &&
 		green_side[3] == 'g' && green_side[5] == 'g' &&
 		red_side[3] == 'r' && red_side[5] == 'r' &&
 		blue_side[3] == 'b' && blue_side[5] == 'b' &&
-		orange_side[3] == 'o' && orange_side[5] == 'o'){
-
+		orange_side[3] == 'o' && orange_side[5] == 'o')
+	{
 		printf("Solved.");
 		solve_stage = 5;
 	}
-	else if (solve_stage == 4){
+	else if (solve_stage == 4)
+	{
+		///// red3 --> 2blue
+		if (red_side[1] == 'r' && white_side[3] == 'b')
+		{
+			flip_cube('F');
+			add_edges_instance_2();	// two right
+			flip_cube('f');
+		}
+		///// red2 --> 3blue
+		else if (blue_side[1] == 'b' && white_side[7] == 'r')
+		{
 
-		if (red_side[1] == 'r' && white_side[3] == 'b'){
-			flip_cube('F');
-			add_edges_instance_2();	// two right
-			flip_cube('f');
+			add_edges_instance_1();	// two left
 		}
-		else if (blue_side[1] == 'b' && white_side[7] == 'r'){
 
-			add_edges_instance_1();	// two left
-		}
-		else if (blue_side[1] == 'b' && white_side[7] == 'o'){
+		//// blue3 --> orange
+		else if (blue_side[1] == 'b' && white_side[7] == 'o')
+		{
 			add_edges_instance_2();	// two right
 		}
-        else if (orange_side[1] == 'o' && white_side[5] == 'b'){
+		//// blue --> 3orange
+		else if (orange_side[1] == 'o' && white_side[5] == 'b')
+		{
 			flip_cube('f');
 			add_edges_instance_1();	// two left
 			flip_cube('F');
 		}
-		else if (orange_side[1] == 'o' && white_side[5] == 'g'){
+		//// orange3 --> green
+		else if (orange_side[1] == 'o' && white_side[5] == 'g')
+		{
 			flip_cube('f');
 			add_edges_instance_2();	// two right
 			flip_cube('F');
 		}
-		else if (green_side[1] == 'g' && white_side[1] == 'o'){
+		//// orange --> 3green
+		else if (green_side[1] == 'g' && white_side[1] == 'o')
+		{
 			flip_cube('F');
 			flip_cube('F');
 			add_edges_instance_1();	// two left
 			flip_cube('f');
 			flip_cube('f');
 		}
-		else if (green_side[1] == 'g' && white_side[1] == 'r'){
+
+		//// green3 --> red
+		else if (green_side[1] == 'g' && white_side[1] == 'r')
+		{
 			flip_cube('F');
 			flip_cube('F');
 			add_edges_instance_2();	// two right
 			flip_cube('f');
 			flip_cube('f');
 		}
-		else if (red_side[1] == 'r' && white_side[3] == 'g'){
+		//// green --> 3red
+		else if (red_side[1] == 'r' && white_side[3] == 'g')
+		{
 			flip_cube('F');
 			add_edges_instance_1();	// two left
 			flip_cube('f');
 		}
+		//// // rotate top layer to match any missing colors
 		else if (blue_side[3] == 'w' || blue_side[5] == 'w' || red_side[3] == 'w' || red_side[5] == 'w' ||
-			green_side[3] == 'w' || green_side[5] == 'w' || orange_side[3] == 'w' || orange_side[5] == 'w'){
-
+			green_side[3] == 'w' || green_side[5] == 'w' || orange_side[3] == 'w' || orange_side[5] == 'w')
+		{
 			back();
 		}
+
+		///// bring incorrectly placed edges to the top again
 		else if (blue_side[3] != 'b' || red_side[5] != 'r' ||
 			red_side[3] != 'r' || green_side[5] != 'g' ||
 			green_side[3] != 'g' || orange_side[5] != 'o' ||
-			orange_side[3] != 'o' || blue_side[5] != 'b'){
-
-			if (blue_side[3] != 'b' || red_side[5] != 'r'){
+			orange_side[3] != 'o' || blue_side[5] != 'b')
+		{
+			if (blue_side[3] != 'b' || red_side[5] != 'r')
+			{
 				flip_cube('F');
 				add_edges_instance_3();
 				flip_cube('f');
 			}
-			else if (red_side[3] != 'r' || green_side[5] != 'g'){
+			else if (red_side[3] != 'r' || green_side[5] != 'g')
+			{
 				flip_cube('F');
 				flip_cube('F');
 				add_edges_instance_3();
 				flip_cube('f');
 				flip_cube('f');
 			}
-			else if (green_side[3] != 'g' || orange_side[5] != 'o'){
+			else if (green_side[3] != 'g' || orange_side[5] != 'o')
+			{
 				flip_cube('f');
 				add_edges_instance_3();
 				flip_cube('F');
 			}
-			else if (orange_side[3] != 'o' || blue_side[5] != 'b'){
+			else if (orange_side[3] != 'o' || blue_side[5] != 'b')
+			{
 				add_edges_instance_3();
 			}
 		}
-		else{
+		else
+		{
 			printf("second layer not solved.");
 		}
 	}
 }
-
-void cube_decide_white_cross(){
+void cube_decide_white_cross() // looking for two whites, may be more efficient, but current revision get the job done
+{
 	printf("\n ");
 	printf(" ");
 	printf("White Cross: ");
@@ -1705,266 +2085,335 @@ void cube_decide_white_cross(){
 		white_side[1] == 'w' &&
 		white_side[3] == 'w' &&
 		white_side[5] == 'w' &&
-		white_side[7] == 'w'){
-
+		white_side[7] == 'w')
+	{
 		printf("Solved.");
 		solve_stage = 6;
 	}
-	else if (blue_side[1] == 'w' || red_side[1] == 'w' || green_side[1] == 'w' || orange_side[1] == 'w'){
-		if (blue_side[1] == 'w' && orange_side[1] == 'w'){
+	else if (blue_side[1] == 'w' || red_side[1] == 'w' || green_side[1] == 'w' || orange_side[1] == 'w')
+	{
+		/// whties in connecting faces
+		if (blue_side[1] == 'w' && orange_side[1] == 'w')
+		{
 			white_cross_on_top();
 		}
-		else if (orange_side[1] == 'w' && green_side[1] == 'w'){
+		else if (orange_side[1] == 'w' && green_side[1] == 'w')
+		{
 			back();
 			white_cross_on_top();
 		}
-		else if (green_side[1] == 'w' && red_side[1] == 'w'){
+		else if (green_side[1] == 'w' && red_side[1] == 'w')
+		{
 			back();
 			back();
 			white_cross_on_top();
 		}
-		else if (red_side[1] == 'w' && blue_side[1] == 'w'){
+		else if (red_side[1] == 'w' && blue_side[1] == 'w')
+		{
 			back_inverted();
 			white_cross_on_top();
 		}
-		else if (blue_side[1] == 'w'){
+		/// whites not on connecting face
+		else if (blue_side[1] == 'w')
+		{
 			white_cross_on_top();
 		}
-		else if (green_side[1] == 'w'){
+		else if (green_side[1] == 'w')
+		{
 			back();
 			back();
 			white_cross_on_top();
 		}
-		else if (red_side[1] == 'w'){
+		else if (red_side[1] == 'w')
+		{
 			back_inverted();
 			white_cross_on_top();
 		}
-		else if (orange_side[1] == 'w'){
+		else if (orange_side[1] == 'w')
+		{
 			back();
 			white_cross_on_top();
 		}
-		else{
+		else
+		{
 			printf("No white cross");
 		}
 	}
 }
-
-void cube_decide_white_top(){
-
+void cube_decide_white_top()
+{
 	printf("\n ");
 	printf(" ");
 	printf("White Face: ");
 	if (white_side[0] == 'w' &&
 		white_side[2] == 'w' &&
 		white_side[6] == 'w' &&
-		white_side[8] == 'w'){
-
+		white_side[8] == 'w')
+	{
 		printf("Solved.");
 		solve_stage = 7;
 	}
-	else if (solve_stage == 6){
+	else if (solve_stage == 6)
+	{
+		/////////////////////////////////// sune cases
 		if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' ||
 			white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' ||
 			white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w' ||
-			white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w'){
-
-			if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' && red_side[0] == 'w' && blue_side[0] == 'w'){
+			white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w')
+		{
+			// Any sune orientation is true
+			/////////////////// left sune cases:
+			if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' && red_side[0] == 'w' && blue_side[0] == 'w')
+			{
 				finish_white_face_instance_2();	// left sune
 			}
-			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w' && blue_side[0] == 'w' && orange_side[0] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w' && blue_side[0] == 'w' && orange_side[0] == 'w')
+			{
 				back();
 				finish_white_face_instance_2(); // left sune
 			}
-			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w' && orange_side[0] == 'w' && green_side[0] == 'w'){
+			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w' && orange_side[0] == 'w' && green_side[0] == 'w')
+			{
 				back();
 				back();
 				finish_white_face_instance_2(); // left sune
 			}
-			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' && green_side[0] == 'w' && red_side[0] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' && green_side[0] == 'w' && red_side[0] == 'w')
+			{
 				back_inverted();
 				finish_white_face_instance_2(); // left sune
 			}
-			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' && orange_side[2] == 'w' && blue_side[2] == 'w'){
+			////////////////// right sune cases:
+			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' && orange_side[2] == 'w' && blue_side[2] == 'w')
+			{
 				finish_white_face_instance_1(); // right sune
 			}
-			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w' && blue_side[2] == 'w' && red_side[2] == 'w'){
+			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w' && blue_side[2] == 'w' && red_side[2] == 'w')
+			{
 				back_inverted();
 				finish_white_face_instance_1(); // right sune
 			}
-			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w' && red_side[2] == 'w' && green_side[2] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w' && red_side[2] == 'w' && green_side[2] == 'w')
+			{
 				back();
 				back();
 				finish_white_face_instance_1(); // right sune
 			}
-			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' && orange_side[2] == 'w' && green_side[2] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' && orange_side[2] == 'w' && green_side[2] == 'w')
+			{
 				back();
 				finish_white_face_instance_1(); // right sune
 			}
-			else{
+			else
+			{
 				printf("We are sune-less!");
 			}
 		}
-		else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w'){
-			if (red_side[0] == 'w' && red_side[2] == 'w' && orange_side[0] == 'w' && orange_side[2] == 'w'){
+		/// blinker or car
+		else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] != 'w')
+		{
+			// car
+			if (red_side[0] == 'w' && red_side[2] == 'w' && orange_side[0] == 'w' && orange_side[2] == 'w')
+			{
 				finish_white_face_instance_1();
 			}
-			else if (blue_side[0] == 'w' && blue_side[2] == 'w' && green_side[0] == 'w' && green_side[2] == 'w'){
+			else if (blue_side[0] == 'w' && blue_side[2] == 'w' && green_side[0] == 'w' && green_side[2] == 'w')
+			{
 				back();
 				finish_white_face_instance_1();
 			}
-			if (red_side[0] == 'w' && red_side[2] == 'w' && blue_side[2] == 'w' && green_side[0] == 'w'){
+			// blinker
+			if (red_side[0] == 'w' && red_side[2] == 'w' && blue_side[2] == 'w' && green_side[0] == 'w')
+			{
 				finish_white_face_instance_1();
 			}
-			else if (blue_side[0] == 'w' && blue_side[2] == 'w' && red_side[0] == 'w' && orange_side[2] == 'w'){
+			else if (blue_side[0] == 'w' && blue_side[2] == 'w' && red_side[0] == 'w' && orange_side[2] == 'w')
+			{
 				back();
 				finish_white_face_instance_1();
 			}
-			else if (orange_side[0] == 'w' && orange_side[2] == 'w' && blue_side[0] == 'w' && green_side[2] == 'w'){
+			else if (orange_side[0] == 'w' && orange_side[2] == 'w' && blue_side[0] == 'w' && green_side[2] == 'w')
+			{
 				finish_white_face_instance_2();
 			}
-			else if (green_side[0] == 'w' && green_side[2] == 'w' && orange_side[0] == 'w' && red_side[2] == 'w'){
+			else if (green_side[0] == 'w' && green_side[2] == 'w' && orange_side[0] == 'w' && red_side[2] == 'w')
+			{
 				back_inverted();
 				finish_white_face_instance_1();
 			}
 		}
-
+		//////// bowtie
 		if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] != 'w' && white_side[8] == 'w' ||
-			white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] == 'w' && white_side[8] != 'w'){
-			if (blue_side[0] == 'w' && orange_side[2] == 'w'){
+			white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] == 'w' && white_side[8] != 'w')
+		{
+			if (blue_side[0] == 'w' && orange_side[2] == 'w')
+			{
 				finish_white_face_instance_1();
 			}
-			else if (red_side[0] == 'w' && blue_side[2] == 'w'){
+			else if (red_side[0] == 'w' && blue_side[2] == 'w')
+			{
 				back_inverted();
 				finish_white_face_instance_1();
 			}
-			if (green_side[0] == 'w' && red_side[2] == 'w'){
+			if (green_side[0] == 'w' && red_side[2] == 'w')
+			{
 				back_inverted();
 				back_inverted();
 				finish_white_face_instance_1();
 			}
-			if (orange_side[0] == 'w' && green_side[2] == 'w'){
+			if (orange_side[0] == 'w' && green_side[2] == 'w')
+			{
 				back();
 				finish_white_face_instance_1();
 			}
 		}
-
+		/////// chameleon
 		if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] == 'w' ||
 			white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] == 'w' ||
 			white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w' ||
-			white_side[0] == 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w'){
-
-			if (white_side[0] == 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w'){
+			white_side[0] == 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w')
+		{
+			if (white_side[0] == 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] != 'w')
+			{
 				finish_white_face_instance_1();
 			}
-			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] == 'w')
+			{
 				back();
 				back();
 				finish_white_face_instance_1();
 			}
-			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] == 'w'){
+			else if (white_side[0] != 'w' && white_side[2] == 'w' && white_side[6] != 'w' && white_side[8] == 'w')
+			{
 				back_inverted();
 				finish_white_face_instance_1();
 			}
-			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w'){
+			else if (white_side[0] == 'w' && white_side[2] != 'w' && white_side[6] == 'w' && white_side[8] != 'w')
+			{
 				back();
 				finish_white_face_instance_1();
 			}
 		}
 	}
 }
-void cube_decide_oll(){
-
+void cube_decide_oll()
+{
 	printf("\n ");
 	printf(" ");
 	printf("OLL: ");
+	//
 	if (green_side[0] == 'o' && green_side[2] == 'o' && red_side[0] == 'g' && red_side[2] == 'g' &&
-		blue_side[0] == 'r' && blue_side[2] == 'r' && orange_side[0] == 'b' && orange_side[2] == 'b'){
-
+		blue_side[0] == 'r' && blue_side[2] == 'r' && orange_side[0] == 'b' && orange_side[2] == 'b')
+	{
 		back();
 	}
 	else if (green_side[0] == 'b' && green_side[2] == 'b' && red_side[0] == 'o' && red_side[2] == 'o' &&
-		blue_side[0] == 'g' && blue_side[2] == 'g' && orange_side[0] == 'r' && orange_side[2] == 'r'){
-
+		blue_side[0] == 'g' && blue_side[2] == 'g' && orange_side[0] == 'r' && orange_side[2] == 'r')
+	{
 		back();
 		back();
 	}
 	else if (green_side[0] == 'r' && green_side[2] == 'r' && red_side[0] == 'b' && red_side[2] == 'b' &&
-		blue_side[0] == 'o' && blue_side[2] == 'o' && orange_side[0] == 'g' && orange_side[2] == 'g'){
-
+		blue_side[0] == 'o' && blue_side[2] == 'o' && orange_side[0] == 'g' && orange_side[2] == 'g')
+	{
 		back_inverted();
 	}
 
 	if (green_side[0] == 'g' && green_side[2] == 'g' && red_side[0] == 'r' && red_side[2] == 'r' &&
-		blue_side[0] == 'b' && blue_side[2] == 'b' && orange_side[0] == 'o' && orange_side[2] == 'o'){
-
+		blue_side[0] == 'b' && blue_side[2] == 'b' && orange_side[0] == 'o' && orange_side[2] == 'o')
+	{
 		printf("Solved.");
 		solve_stage = 8;
 	}
 
-	else if (solve_stage == 7){
-		if (blue_side[0] == 'b' && blue_side[2] == 'g' && orange_side[2] == 'b'){
+	else if (solve_stage == 7)
+	{
+		// green on right cases
+		if (blue_side[0] == 'b' && blue_side[2] == 'g' && orange_side[2] == 'b')
+		{
 			green_on_right();
 		}
-		else if (red_side[0] == 'b' && red_side[2] == 'g' && blue_side[2] == 'b'){
+		else if (red_side[0] == 'b' && red_side[2] == 'g' && blue_side[2] == 'b')
+		{
 			back_inverted();
 			green_on_right();
 		}
-		else if (green_side[0] == 'b' && green_side[2] == 'g' && red_side[2] == 'b'){
+		else if (green_side[0] == 'b' && green_side[2] == 'g' && red_side[2] == 'b')
+		{
 			back();
 			back();
 			green_on_right();
 		}
-		else if (orange_side[0] == 'b' && orange_side[2] == 'g' && green_side[2] == 'b'){
+		else if (orange_side[0] == 'b' && orange_side[2] == 'g' && green_side[2] == 'b')
+		{
 			back();
 			green_on_right();
 		}
-		else if (blue_side[0] == 'g' && blue_side[2] == 'b' && red_side[0] == 'b'){
+
+		// green on left cases
+		else if (blue_side[0] == 'g' && blue_side[2] == 'b' && red_side[0] == 'b')
+		{
 			green_on_left();
 		}
-		else if (red_side[0] == 'g' && red_side[2] == 'b' && green_side[0] == 'b'){
+		else if (red_side[0] == 'g' && red_side[2] == 'b' && green_side[0] == 'b')
+		{
 			back_inverted();
 			green_on_left();
 		}
-		else if (green_side[0] == 'g' && green_side[2] == 'b' && orange_side[0] == 'b'){
+		else if (green_side[0] == 'g' && green_side[2] == 'b' && orange_side[0] == 'b')
+		{
 			back();
 			back();
 			green_on_left();
 		}
-		else if (orange_side[0] == 'g' && orange_side[2] == 'b' && blue_side[0] == 'b'){
+		else if (orange_side[0] == 'g' && orange_side[2] == 'b' && blue_side[0] == 'b')
+		{
 			back();
 			green_on_left();
 		}
-		else{
+		// last resort, 2 steps to reach PLL are needed
+		// green on right
+		else
+		{
 			printf("last resort");
-			if (blue_side[2] == 'g'){
+			if (blue_side[2] == 'g')
+			{
 				green_on_right();
 			}
-			else if (orange_side[2] == 'g'){
+			else if (orange_side[2] == 'g')
+			{
 				back();
 				green_on_right();
 			}
-			else if (green_side[2] == 'g'){
+			else if (green_side[2] == 'g')
+			{
 				back();
 				back();
 				green_on_right();
 			}
-			else if (red_side[2] == 'g'){
+			else if (red_side[2] == 'g')
+			{
 				back_inverted();
 				green_on_right();
 			}
-			else if (blue_side[0] == 'g'){
+			// green on left
+			else if (blue_side[0] == 'g')
+			{
 				green_on_left();
 			}
-			else if (orange_side[0] == 'g'){
+			else if (orange_side[0] == 'g')
+			{
 				back();
 				green_on_left();
 			}
-			else if (green_side[0] == 'g'){
+			else if (green_side[0] == 'g')
+			{
 				back();
 				back();
 				green_on_left();
 			}
-			else if (red_side[0] == 'g'){
+			else if (red_side[0] == 'g')
+			{
 				back_inverted();
 				green_on_left();
 			}
@@ -1972,130 +2421,171 @@ void cube_decide_oll(){
 	}
 
 }
-
-void cube_decide_pll(){
-
+void cube_decide_pll()
+{
 	printf("\n ");
 	printf(" ");
 	printf("PLL: ");
-	if (blue_side[1] == 'b' && red_side[1] == 'r' && green_side[1] == 'g' && orange_side[1] == 'o'){
+	///////////////////////////////////
+	if (blue_side[1] == 'b' && red_side[1] == 'r' && green_side[1] == 'g' && orange_side[1] == 'o')
+	{
 		printf("Solved.");
 		solve_stage = 9;
 	}
-	else if (solve_stage == 8){
+	else if (solve_stage == 8)
+	{
 		printf("inside");
-		if (red_side[1] == 'b' && blue_side[1] == 'o' && orange_side[1] == 'r'){
+		// counter clockwise rotation cases
+		if (red_side[1] == 'b' && blue_side[1] == 'o' && orange_side[1] == 'r')
+		{
 			ccw_rotation();
 		}
-		else if (green_side[1] == 'r' && red_side[1] == 'b' && blue_side[1] == 'g'){
+		else if (green_side[1] == 'r' && red_side[1] == 'b' && blue_side[1] == 'g')
+		{
 			flip_cube('F');
 			ccw_rotation();
 			flip_cube('f');
 		}
-		else if (orange_side[1] == 'g' && green_side[1] == 'r' && red_side[1] == 'o'){
+		else if (orange_side[1] == 'g' && green_side[1] == 'r' && red_side[1] == 'o')
+		{
 			flip_cube('F');
 			flip_cube('F');
 			ccw_rotation();
 			flip_cube('F');
 			flip_cube('F');
 		}
-		else if (blue_side[1] == 'o' && orange_side[1] == 'g' && green_side[1] == 'b'){
+		else if (blue_side[1] == 'o' && orange_side[1] == 'g' && green_side[1] == 'b')
+		{
 			flip_cube('f');
 			ccw_rotation();
 			flip_cube('F');
 		}
-		else if (red_side[1] == 'o' && blue_side[1] == 'r' && orange_side[1] == 'b'){
+
+		// clockwise rotation cases
+		else if (red_side[1] == 'o' && blue_side[1] == 'r' && orange_side[1] == 'b')
+		{
 			cw_rotation();
 		}
-		else if (green_side[1] == 'b' && red_side[1] == 'g' && blue_side[1] == 'r'){
+		else if (green_side[1] == 'b' && red_side[1] == 'g' && blue_side[1] == 'r')
+		{
 			flip_cube('F');
 			cw_rotation();
 			flip_cube('f');
 		}
-		else if (orange_side[1] == 'r' && green_side[1] == 'o' && red_side[1] == 'g'){
+		else if (orange_side[1] == 'r' && green_side[1] == 'o' && red_side[1] == 'g')
+		{
 			flip_cube('F');
 			flip_cube('F');
 			cw_rotation();
 			flip_cube('F');
 			flip_cube('F');
 		}
-		else if (blue_side[1] == 'g' && orange_side[1] == 'b' && green_side[1] == 'o'){
+		else if (blue_side[1] == 'g' && orange_side[1] == 'b' && green_side[1] == 'o')
+		{
 			flip_cube('f');
 			cw_rotation();
 			flip_cube('F');
 		}
-		else if (blue_side[1] != 'b' && red_side[1] != 'r' && green_side[1] != 'g' && orange_side[1] != 'o'){
+		// all four edges are bad
+		else if (blue_side[1] != 'b' && red_side[1] != 'r' && green_side[1] != 'g' && orange_side[1] != 'o')
+		{
 			cw_rotation();
 		}
-		else{
+		else	// there is a problem here
+		{
 			printf("Problem in Pll (else statement reached)");
 		}
 	}
-	else{
+	else
+	{
 		printf("Error in pll_case_check()");
 	}
 }
-void cube_decide_solved(){
-
+void cube_decide_solved()
+{
 	printf(" ");
 	printf("\n ");
-	for (int i = 0; i < 9; i++){
-		if (yellow_side[i] != 'y'){
+
+	// check if all sides have the correct color
+	for (int i = 0; i < 9; i++)
+	{
+		if (yellow_side[i] != 'y')
+		{
 			cube_solved = false;
 		}
-		if (white_side[i] != 'w'){
+		if (white_side[i] != 'w')
+		{
 			cube_solved = false;
 		}
-		if (blue_side[i] != 'b'){
+		if (blue_side[i] != 'b')
+		{
 			cube_solved = false;
 		}
-		if (red_side[i] != 'r'){
+		if (red_side[i] != 'r')
+		{
 			cube_solved = false;
 		}
-		if (green_side[i] != 'g'){
+		if (green_side[i] != 'g')
+		{
 			cube_solved = false;
 		}
-		if (orange_side[i] != 'o'){
+		if (orange_side[i] != 'o')
+		{
 			cube_solved = false;
 		}
 	}
-	if (cube_solved == true){
-        printf("The Whole Cube is solved!!!");
+	if (cube_solved == true)
+	{
+		printf("The Whole Cube is solved!!!");
 		getchar();
 	}
-	else{
+	else
+	{
 		printf("There is a problem: the cube isn't solved!");
 		cube_solved = false;
 	}
-	print_whole_cube();
+	//print_whole_cube();
 	solve_stage = 10;
 }
 
-void cube_decide(){
 
-	switch (solve_stage){
+
+
+void cube_decide()
+{
+	switch (solve_stage)
+	{
 	case 1:
+		// Cross
 		cube_decide_cross();
 		break;
 	case 2:
+		// Whole Cross
 		cube_decide_whole_cross();
 		break;
 	case 3:
+		// First layer (corners)
 		cube_decide_corners();
+
 		break;
 	case 4:
+		// Second Layer
 		cube_decide_add_edges();
 		break;
 	case 5:
+		// White Cross
 		cube_decide_white_cross();
 		break;
 	case 6:
+		// White Top
 		cube_decide_white_top();
 		break;
 	case 7:
+		// Orientation of the Last Layer
 		cube_decide_oll();
 		break;
 	case 8:
+		// Permute the Last Layer
 		cube_decide_pll();
 		break;
 	case 9:
@@ -2105,83 +2595,36 @@ void cube_decide(){
 
 }
 
-void input(int i, char * tab, Color color)
+void auto_test(bool test_ongoing)
 {
-		if (color == WHITE){
-			tab[i] = 'w';
-		}
-		else if (color == YELLOW){
-			tab[i] = 'y';
-		}
-		else if (color == GREEN){
-			tab[i] = 'g';
-		}
-		else if (color == RED){
-			tab[i] = 'r';
-		}
-		else if (color == ORANGE){
-			tab[i] = 'o';
-		}
-		else if (color == BLUE){
-			tab[i] = 'b';
-		}
-}
-
-void auto_test(Cube cube)
-{
-    	for (int i = 0; i < numberOfWalls; i++){
-                switch (i){
-                case WHITE:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, white_side, wallColor);
-                     }
-                break;
-                case YELLOW:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, yellow_side, wallColor);
-                     }
-                break;
-                case ORANGE:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, orange_side, wallColor);
-                     }
-                break;
-                case GREEN:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, green_side, wallColor);
-                     }
-                break;
-                case RED:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, red_side, wallColor);
-                     }
-                break;
-                case BLUE:
-                     for (int j = 0;j < numberOfCells;j++){
-                        Color wallColor = cube.getWall(i).getColor(j);
-                        input(j, blue_side, wallColor);
-                     }
-                break;
-                }
-		}
-    bool test_ongoing = true;
-	while (test_ongoing == true){
-	    solve_stage = 1;
+	printf("Auto (Algorithm) Test:");
+	int num_of_tests_ran = 1;
+	while (test_ongoing == true)
+	{
+		printf("Test number: ");
+		printf("%d", num_of_tests_ran);
+		//scramble();
+		//Sleep(10000);
 		print_whole_cube();
-		printf("Stage number: %d\n", solve_stage);
+		getchar();
 		solve_stage = 1;
-		while (solve_stage != 10){
+		// solve the cube
+		while (solve_stage != 10)
+		{
 			cube_decide();
+
 		}
-		print_whole_cube();
-		if (cube_solved == false){
+		// check if solved
+		if (cube_solved == false)
+		{
 			test_ongoing = false;
 		}
+		else
+		{
+			num_of_tests_ran++;
+		}
 	}
+	printf("Error found, test ended at Test number:");
+	printf("%d", num_of_tests_ran);
 }
 
