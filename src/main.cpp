@@ -4,7 +4,6 @@
 #include "CubeAlgorithmClass.h"
 #include <iostream>
 #include <stdexcept>
-#include <windows.h>
 
 using namespace std;
 
