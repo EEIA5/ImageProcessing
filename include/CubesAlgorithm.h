@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <vector>
+#include <string>
 #include "Cube.h"
 
 using namespace std;
@@ -55,5 +57,8 @@ extern void cube_decide_solved();
 extern void cube_decide();
 extern void auto_test(Cube cube);
 extern void input(int i, char * tab, Color color);
-
+Color convertCharToColor(char charColor);
+Cube* toCube();
+vector<Cube*> getCubeVec();
+vector<string> getMoveVec();
 #endif // CUBESALGORITHM_H_INCLUDED

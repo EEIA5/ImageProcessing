@@ -1,8 +1,13 @@
 #include <iostream>
 #include <cstdlib>
-
+#include <vector>
+#include <string>
+#include "CubesAlgorithm.h"
 
 using namespace std;
+
+vector<string> moves;
+vector<Cube*> cubes;
 
 bool sim_only = false;
 bool cube_solved = true;
@@ -36,8 +41,7 @@ char orange_side[9] = { 'o', 'o', 'o',
 void left()
 {
 	printf("L', ");
-
-
+    moves.push_back("L'");
 
 	// Cube simulation
 	char r_yellow_side[9];
@@ -93,10 +97,13 @@ void left()
 	red_side[6] = r_red_side[8];
 	red_side[7] = r_red_side[5];
 	red_side[8] = r_red_side[2];
+	cubes.push_back(toCube());
 }
 void left_inverted()
 {
 	printf("L, ");
+    moves.push_back("L");
+
 	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
@@ -150,11 +157,11 @@ void left_inverted()
 	red_side[6] = r_red_side[0];
 	red_side[7] = r_red_side[3];
 	red_side[8] = r_red_side[6];
+	cubes.push_back(toCube());
 }
 void right() {
 	printf("R', ");
-
-
+    moves.push_back("R'");
 
 	// Cube simulation
 	char r_yellow_side[9];
@@ -209,11 +216,12 @@ void right() {
 	orange_side[6] = r_orange_side[8];
 	orange_side[7] = r_orange_side[5];
 	orange_side[8] = r_orange_side[2];
+    cubes.push_back(toCube());
 }
 void right_inverted()
 {
 	printf("R, ");
-
+    moves.push_back("R");
 	// Cube simulation
 	char r_yellow_side[9];
 	char r_blue_side[9];
@@ -267,10 +275,12 @@ void right_inverted()
 	orange_side[6] = r_orange_side[0];
 	orange_side[7] = r_orange_side[3];
 	orange_side[8] = r_orange_side[6];
+	cubes.push_back(toCube());
 }
 void down()
 {
 	printf("D', ");
+    moves.push_back("D'");
 
 	// Cube simulation
 	char r_yellow_side[9];
@@ -325,10 +335,13 @@ void down()
 	green_side[6] = r_green_side[8];
 	green_side[7] = r_green_side[5];
 	green_side[8] = r_green_side[2];
+
+    cubes.push_back(toCube());
 }
 void down_inverted()
 {
 	printf("D, ");
+    moves.push_back("D");
 
 	// Cube simulation
 	char r_yellow_side[9];
@@ -383,10 +396,13 @@ void down_inverted()
 	green_side[6] = r_green_side[0];
 	green_side[7] = r_green_side[3];
 	green_side[8] = r_green_side[6];
+	cubes.push_back(toCube());
 }
 void up()
 {
 	printf("U', ");
+    moves.push_back("U'");
+
 	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
@@ -440,10 +456,13 @@ void up()
 	blue_side[6] = r_blue_side[8];
 	blue_side[7] = r_blue_side[5];
 	blue_side[8] = r_blue_side[2];
+	cubes.push_back(toCube());
 }
 void up_inverted()
 {
 	printf("U, ");
+    moves.push_back("U");
+
 	// Cube simulation
 	char r_yellow_side[9];
 	char r_white_side[9];
@@ -497,10 +516,12 @@ void up_inverted()
 	blue_side[6] = r_blue_side[0];
 	blue_side[7] = r_blue_side[3];
 	blue_side[8] = r_blue_side[6];
+	cubes.push_back(toCube());
 }
 void front()
 {
 	printf("F, ");
+    moves.push_back("F");
 
 
 
@@ -558,10 +579,12 @@ void front()
 	yellow_side[6] = r_yellow_side[8];
 	yellow_side[7] = r_yellow_side[5];
 	yellow_side[8] = r_yellow_side[2];
+	cubes.push_back(toCube());
 }
 void front_inverted()
 {
 	printf("F', ");
+    moves.push_back("F'");
 
 
 
@@ -618,10 +641,12 @@ void front_inverted()
 	yellow_side[6] = r_yellow_side[0];
 	yellow_side[7] = r_yellow_side[3];
 	yellow_side[8] = r_yellow_side[6];
+	cubes.push_back(toCube());
 }
 void back()
 {
 	printf("B, ");
+    moves.push_back("B");
 
 
 	// Cube simulation
@@ -677,10 +702,12 @@ void back()
 	white_side[6] = r_white_side[8];
 	white_side[7] = r_white_side[5];
 	white_side[8] = r_white_side[2];
+	cubes.push_back(toCube());
 }
 void back_inverted()
 {
 	printf("B', ");
+    moves.push_back("B'");
 
 
 
@@ -737,6 +764,7 @@ void back_inverted()
 	white_side[6] = r_white_side[0];
 	white_side[7] = r_white_side[3];
 	white_side[8] = r_white_side[6];
+	cubes.push_back(toCube());
 }
 
 
@@ -794,14 +822,11 @@ void scramble() // random 25 moves
 void print_cube(char cube_side[])
 {
 	// make a for loop for this
-	for (int i = 0; i < 1; i++)
-	{
+	for (int i = 0; i < 1; i++){
 		printf("\r");
 	}
-
 	printf("Face: ");
-	printf("%c", cube_side[4]);
-
+	printf("%c\n", cube_side[4]);
 	for (int i = 0; i < 9; i = i + 3)
 	{
 		printf("|");
@@ -810,8 +835,9 @@ void print_cube(char cube_side[])
 		printf("%c", cube_side[i + 1]);
 		printf("|");
 		printf("%c", cube_side[i + 2]);
-		printf("|");
+		printf("|\n");
 	}
+	printf("\n\n");
 }
 
 
@@ -846,6 +872,7 @@ void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
 		char r_yellow_side[9];
 	case 'F': // CW on F
 		printf("[Cube Flip: CW on F], ");
+        moves.push_back("[Cube Flip: CW on F]");
 
 
 		// cube simulation
@@ -912,9 +939,11 @@ void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
 		yellow_side[6] = r_yellow_side[8];
 		yellow_side[7] = r_yellow_side[5];
 		yellow_side[8] = r_yellow_side[2];
+		cubes.push_back(toCube());
 		break;
 	case 'f': // CCW on F
 		printf("[Cube Flip: CCW on F], ");
+        moves.push_back("[Cube Flip: CCW on F]");
 
 		// assign colors to a copy of the face
 		for (int i = 0; i < 9; i++)
@@ -980,11 +1009,12 @@ void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
 		white_side[6] = r_white_side[8];
 		white_side[7] = r_white_side[5];
 		white_side[8] = r_white_side[2];
-
+        cubes.push_back(toCube());
 		break;
 	case 'U': // CW on U
 
 		printf("[Cube Flip: CW on U], ");
+        moves.push_back("[Cube Flip: CW on U]");
 
 
 		for (int i = 0; i < 9; i++)
@@ -1074,8 +1104,10 @@ void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
 		blue_side[6] = r_blue_side[8];
 		blue_side[7] = r_blue_side[5];
 		blue_side[8] = r_blue_side[2];
+		cubes.push_back(toCube());
 	case 'u':
 		printf("[Cube Flip: CCW on U], ");
+        moves.push_back("[Cube Flip: CCW on U]");
 
 		for (int i = 0; i < 9; i++)
 		{
@@ -1164,7 +1196,7 @@ void flip_cube(char cube_rotation)	// flips the cube on the F or U axis
 		green_side[6] = green_side[8];
 		green_side[7] = green_side[5];
 		green_side[8] = green_side[2];
-
+        cubes.push_back(toCube());
 	default:
 		printf("INVALID CUBE ROTATION: SEE < void flip_cube() >");
 	}
@@ -1821,7 +1853,7 @@ void cube_decide_corners() // needs fixing, maybe yellows at bottom portion
 			green_side[0] == 'y' || green_side[2] == 'y' || orange_side[0] == 'y' || orange_side[2] == 'y' ||
 			white_side[0] == 'y' || white_side[2] == 'y' || white_side[6] == 'y' || white_side[8] == 'y')
 		{
-			////////// Do all possible cases for corner (4×3):
+			////////// Do all possible cases for corner (4Ã—3):
 			//////// 3 cases for the blue/orange sides
 			if (blue_side[2] == 'y' && white_side[8] == 'b' && orange_side[0] == 'o')
 			{
@@ -2537,7 +2569,7 @@ void cube_decide_solved()
 	if (cube_solved == true)
 	{
 		printf("The Whole Cube is solved!!!");
-		getchar();
+	//	getchar();
 	}
 	else
 	{
@@ -2595,36 +2627,125 @@ void cube_decide()
 
 }
 
-void auto_test(bool test_ongoing)
-{
-	printf("Auto (Algorithm) Test:");
-	int num_of_tests_ran = 1;
-	while (test_ongoing == true)
-	{
-		printf("Test number: ");
-		printf("%d", num_of_tests_ran);
-		//scramble();
-		//Sleep(10000);
+void auto_test(Cube cube){
+   	for (int i = 0; i < numberOfWalls; i++){
+                switch (i){
+                case WHITE:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, white_side, wallColor);
+                     }
+                break;
+                case YELLOW:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, yellow_side, wallColor);
+                     }
+                break;
+                case ORANGE:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, orange_side, wallColor);
+                     }
+                break;
+                case GREEN:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, green_side, wallColor);
+                     }
+                break;
+                case RED:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, red_side, wallColor);
+                     }
+                break;
+                case BLUE:
+                     for (int j = 0;j < numberOfCells;j++){
+                        Color wallColor = cube.getWall(i).getColor(j);
+                        input(j, blue_side, wallColor);
+                     }
+                break;
+                }
+		}
+    moves.push_back("Stan poczatkowy kostki");
+    cubes.push_back(toCube());
+    bool test_ongoing = true;
+	while (test_ongoing == true){
+	    solve_stage = 1;
 		print_whole_cube();
-		getchar();
+		printf("Stage number: %d\n", solve_stage);
 		solve_stage = 1;
-		// solve the cube
-		while (solve_stage != 10)
-		{
+		while (solve_stage != 10){
 			cube_decide();
-
 		}
-		// check if solved
-		if (cube_solved == false)
-		{
-			test_ongoing = false;
-		}
-		else
-		{
-			num_of_tests_ran++;
-		}
+		printf("\n\n");
+		break;
 	}
-	printf("Error found, test ended at Test number:");
-	printf("%d", num_of_tests_ran);
 }
 
+void input(int i, char * tab, Color color)
+{
+		if (color == WHITE){
+			tab[i] = 'w';
+		}
+		else if (color == YELLOW){
+			tab[i] = 'y';
+		}
+		else if (color == GREEN){
+			tab[i] = 'g';
+		}
+		else if (color == RED){
+			tab[i] = 'r';
+		}
+		else if (color == ORANGE){
+			tab[i] = 'o';
+		}
+		else if (color == BLUE){
+			tab[i] = 'b';
+		}
+}
+
+Cube* toCube(){
+    Cube* cube = new Cube();
+    for (unsigned cell = 0; cell < numberOfCells; cell++){
+        cube->setCell(WHITE, cell, convertCharToColor(white_side[cell]));
+        cube->setCell(YELLOW, cell, convertCharToColor(yellow_side[cell]));
+        cube->setCell(RED, cell, convertCharToColor(red_side[cell]));
+        cube->setCell(BLUE, cell, convertCharToColor(blue_side[cell]));
+        cube->setCell(ORANGE, cell, convertCharToColor(orange_side[cell]));
+        cube->setCell(GREEN, cell, convertCharToColor(green_side[cell]));
+    }
+    return cube;
+}
+
+Color convertCharToColor(char charColor){
+    switch (charColor){
+    case 'w':
+        return WHITE;
+        break;
+    case 'y':
+        return YELLOW;
+        break;
+    case 'r':
+        return RED;
+        break;
+    case 'g':
+        return GREEN;
+        break;
+    case 'b':
+        return BLUE;
+        break;
+    case 'o':
+        return ORANGE;
+        break;
+    }
+}
+
+vector<Cube*> getCubeVec(){
+    return cubes;
+}
+
+vector<string> getMoveVec(){
+    return moves;
+}

@@ -11,16 +11,16 @@ using namespace cv;
 class CubePrinter
 {
 public:
-    CubePrinter();
+    CubePrinter(string wndName = "Cube View");
     ~CubePrinter();
-    void print(Cube cube);
-    void setCube(Cube cube);
-    Cube getCube();
+    void print(Cube* cube);
+    void setCube(Cube* cube);
+    Cube* getCube();
 
 private:
     unsigned startX, startY;
     Mat* view;
-    Cube cube;
+    Cube* cube;
     string windowName;
     unsigned short squareSize;
     unsigned short spaceBetweenSquares;

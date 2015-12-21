@@ -9,7 +9,7 @@ using namespace std;
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 30;
     tresholdCannyTwo = 30;
-    minArea = 2000;
+    minArea = 1000;
     minSquareSide = 170;
     squareTolerance = 15;
     windowName = "Camera";
@@ -42,11 +42,10 @@ void CubeDetector::findContures(){
     if (frame.empty()){
         throw runtime_error("Empty frame!");
     }
-    imshow(windowName, frame);
-
+    medianBlur(frame,frame,11);
     Canny(frame, imageGray, tresholdCannyOne, tresholdCannyTwo);
-    findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_TC89_KCOS);
-
+    findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
+    imshow(windowName, frame);
     int area;
     for(unsigned contoure = 0; contoure < contours.size(); contoure++){
         approxPolyDP(Mat(contours[contoure]), approxs, arcLength(Mat(contours[contoure]), true) * 0.02, true);

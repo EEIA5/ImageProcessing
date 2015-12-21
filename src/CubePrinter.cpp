@@ -5,8 +5,8 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
-CubePrinter::CubePrinter(){
-    windowName = "Cube view";
+CubePrinter::CubePrinter(string wndName){
+    windowName = wndName;
     squareSize = 40;
     spaceBetweenSquares = 5;
     namedWindow(windowName, WINDOW_AUTOSIZE);
@@ -33,7 +33,7 @@ void CubePrinter::drawWallNames(){
     putText(*view, "Yellow", Point(startX + d, startY + 2 * d - wallNamePosFix), FONT_HERSHEY_SIMPLEX, fontScale, textColor);
 }
 
-void CubePrinter::print(Cube cube){
+void CubePrinter::print(Cube* cube){
     this->cube = cube;
     unsigned d = (numberOfCellsInRow + 1) * squareSize + spaceBetweenSquares;
     drawWall(startX, startY + d, ORANGE);
@@ -49,13 +49,13 @@ void CubePrinter::drawWall(unsigned x, unsigned y, unsigned w){
     Color color;
     unsigned tmpX = x, tmpY = y;
     for (unsigned short cell = 0; cell < numberOfCells; cell++){
-        color = cube.getWall(w).getColor(cell);
+        color = cube->getWall(w).getColor(cell);
         if (cell % numberOfCellsInRow == 0 && cell != 0){
             tmpX = x;
             tmpY += squareSize + spaceBetweenSquares;
         }
         drawSquare(tmpX, tmpY , color);
-        if (cube.getWall(w).isLocked() && cell == 4){
+        if (cube->getWall(w).isLocked() && cell == 4){
             Point leftUpper = Point(tmpX + squareSize / 4, tmpY + squareSize / 4);
             Point rightLower = Point(tmpX + squareSize -  squareSize / 4, tmpY + squareSize  -  squareSize / 4);
             rectangle(*view, leftUpper, rightLower, Scalar(0, 0, 0), -1);
@@ -94,10 +94,10 @@ Scalar CubePrinter::getColorScalar(Color color){
     }
 }
 
-void CubePrinter::setCube(Cube cube){
+void CubePrinter::setCube(Cube* cube){
     this->cube = cube;
 }
 
-Cube CubePrinter::getCube(){
+Cube* CubePrinter::getCube(){
     return cube;
 }
