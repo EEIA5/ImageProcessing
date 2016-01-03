@@ -24,7 +24,7 @@ set(SOURCE_FILES
 	include/CubeAlgorithmClass.h
 	include/CubesAlgorithm.h
 	include/CubeResultViewer.h
-	src/CubeResultViewer.h)
+	src/CubeResultViewer.cpp)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 
