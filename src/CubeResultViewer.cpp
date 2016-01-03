@@ -1,4 +1,5 @@
 #include "CubeResultViewer.h"
+#include <stdexcept>
 
 using namespace cv;
 
