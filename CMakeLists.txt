@@ -22,7 +22,9 @@ set(SOURCE_FILES
 	include/ColorsRange.h
 	include/Constants.h
 	include/CubeAlgorithmClass.h
-	include/CubesAlgorithm.h)
+	include/CubesAlgorithm.h
+	include/CubeResultViewer.h
+	src/CubeResultViewer.h)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 

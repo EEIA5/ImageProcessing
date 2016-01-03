@@ -16,9 +16,17 @@ public:
     void print(Cube* cube);
     void setCube(Cube* cube);
     Cube* getCube();
+    Mat* getView();
+
+protected:
+    unsigned startX, startY;
+    double fontScale;
+    short wallNamePosFix;
+    Scalar textColor;
+    Scalar background;
+    unsigned d;
 
 private:
-    unsigned startX, startY;
     Mat* view;
     Cube* cube;
     string windowName;
@@ -28,9 +36,6 @@ private:
     void drawSquare(unsigned x, unsigned y, Color color);
     Scalar getColorScalar(Color color);
     void drawWallNames();
-    double fontScale;
-    short wallNamePosFix;
-    Scalar textColor;
 };
 
 

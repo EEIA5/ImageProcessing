@@ -11,7 +11,6 @@ class CubeDetector
 {
 public:
     void findContures();
-    bool isWorking();
     Mat getCube();
     CubeDetector();
     ~CubeDetector();

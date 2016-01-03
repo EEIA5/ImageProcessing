@@ -7,15 +7,17 @@
 
 CubePrinter::CubePrinter(string wndName){
     windowName = wndName;
+    background = Scalar(30,30,30);
     squareSize = 40;
     spaceBetweenSquares = 5;
     namedWindow(windowName, WINDOW_AUTOSIZE);
-    view = new Mat(500,660, CV_8UC3, Scalar(30,30,30));
+    view = new Mat(500,660, CV_8UC3, background);
     startX = 10;
     startY = 30;
     fontScale = 0.7;
     wallNamePosFix = 8;
     textColor = Scalar(255, 255, 255);
+    d = (numberOfCellsInRow + 1) * squareSize + spaceBetweenSquares;
     drawWallNames();
 }
 
@@ -24,7 +26,6 @@ CubePrinter::~CubePrinter(){
 }
 
 void CubePrinter::drawWallNames(){
-    unsigned d = (numberOfCellsInRow + 1) * squareSize + spaceBetweenSquares;
     putText(*view, "Orange", Point(startX ,startY + d - wallNamePosFix), FONT_HERSHEY_SIMPLEX, fontScale,textColor);
     putText(*view, "White", Point(startX + d, startY - wallNamePosFix), FONT_HERSHEY_SIMPLEX, fontScale, textColor);
     putText(*view, "Green", Point(startX + d, startY + d - wallNamePosFix), FONT_HERSHEY_SIMPLEX, fontScale, textColor);
@@ -35,7 +36,6 @@ void CubePrinter::drawWallNames(){
 
 void CubePrinter::print(Cube* cube){
     this->cube = cube;
-    unsigned d = (numberOfCellsInRow + 1) * squareSize + spaceBetweenSquares;
     drawWall(startX, startY + d, ORANGE);
     drawWall(startX + d , startY, WHITE);
     drawWall(startX + d , startY + 2* d, YELLOW);
@@ -100,4 +100,8 @@ void CubePrinter::setCube(Cube* cube){
 
 Cube* CubePrinter::getCube(){
     return cube;
+}
+
+Mat* CubePrinter::getView(){
+    return view;
 }

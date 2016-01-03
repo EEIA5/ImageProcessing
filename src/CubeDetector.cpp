@@ -18,18 +18,12 @@ CubeDetector::CubeDetector(){
     if (!videoCapture->isOpened()){
         throw runtime_error("Failed to open a video device!\nInitialization failed!");
     }
+    videoCapture->set(CV_CAP_PROP_FRAME_WIDTH,1024);
+    videoCapture->set(CV_CAP_PROP_FRAME_HEIGHT,860);
 }
 
 CubeDetector::~CubeDetector(){
     delete videoCapture;
-}
-
-bool CubeDetector::isWorking(){
-	auto key = static_cast<char>(waitKey(5));
-        if (key == 'q'){
-            return false;
-        }
-    return true;
 }
 
 void CubeDetector::findContures(){
