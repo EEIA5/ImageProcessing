@@ -6,20 +6,34 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
+
+using namespace cv;
+
 CubeAnalyzer::CubeAnalyzer(){
     radius = 10;
     windowName = "Cube";
     namedWindow(windowName, WINDOW_AUTOSIZE);
+    lockChar = '1';
+    unlockChar = '2';
 }
 
 void CubeAnalyzer::analyze(Mat cubeMat){
-    this->cubeMat = cubeMat;
+    Mat display;
     Size imageSize = cubeMat.size();
     int w = imageSize.width;
-    Color sideColor;
-    Mat display;
+    this->cubeMat = cubeMat;
+
+    medianBlur(cubeMat, cubeMat, 5);
     cubeMat.copyTo(display);
-    if (w != 0){
+
+    Color sideColor = detectSide();
+    if (isPressed(lockChar)){
+        cube.lockWall(sideColor);
+    }else if (isPressed(unlockChar)){
+        cube.unlockWall(sideColor);
+    }
+
+    if (w != 0 && sideColor != UNDEF){
         int step = w / numberOfCellsInRow;
         int start = w * drawingPercentShift;
         int x, y, cellNumber;
@@ -28,25 +42,24 @@ void CubeAnalyzer::analyze(Mat cubeMat){
                 x = start + step * horizontal;
                 y = start + step * vertical;
                 Color color = reconizeColor(x, y);
-                drawCircles(display, Point(x,y), radius, color);
-                sideColor = detectSide();
-                if (sideColor != UNDEF){
+                drawCircles(display, Point(x,y), color);
+                if (!cube.isWallLocked(sideColor)){
                     cellNumber = horizontal + vertical * numberOfCellsInRow;
                     cube.setCell(sideColor, cellNumber, color);
+                }
             }
         }
-    }
         imshow(windowName, display);
-}
+    }
 }
 
-Color CubeAnalyzer::detectSide() {
+Color CubeAnalyzer::detectSide(){
     Size cubeSize = cubeMat.size();
     return reconizeColor(cubeSize.width / 2, cubeSize.height / 2);
 }
 
 Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
-        vector<Vec3b> colors;
+    vector<Vec3b> colors;
     Size cubeSize = cubeMat.size();
     Color color = UNDEF;
     if (isInMatrixBounds(x, y, cubeSize.width, cubeSize.height)){
@@ -55,6 +68,14 @@ Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
         colors.push_back(getRawColor(x - radius, y));
         colors.push_back(getRawColor(x, y + radius));
         colors.push_back(getRawColor(x, y - radius));
+        colors.push_back(getRawColor(x + radius / 2, y));
+        colors.push_back(getRawColor(x - radius / 2, y));
+        colors.push_back(getRawColor(x, y + radius / 2));
+        colors.push_back(getRawColor(x, y - radius / 2));
+        colors.push_back(getRawColor(x + radius / 2, y + radius / 2));
+        colors.push_back(getRawColor(x - radius / 2, y - radius / 2));
+        colors.push_back(getRawColor(x - radius / 2, y + radius / 2));
+        colors.push_back(getRawColor(x + radius / 2, y - radius / 2));
         Vec3b avgColor = avgColors(colors);
         color = classifyColor(avgColor);
     }
@@ -70,7 +91,7 @@ Vec3b CubeAnalyzer::getRawColor(unsigned x, unsigned y){
     Mat BGR = cubeMat(Rect(x, y, 1, 1));
     cvtColor(BGR, HSV, CV_BGR2HSV);
     return HSV.at<Vec3b>(0, 0);
-        }
+}
 
 Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
     int sumH = 0, sumS = 0, sumV = 0;
@@ -80,34 +101,51 @@ Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
         sumV += colors[i][2];
     }
     Vec3b color;
-        color[0] = sumH / colors.size();
-        color[1] = sumS / colors.size();
-        color[2] = sumV / colors.size();
+    color[0] = sumH / colors.size();
+    color[1] = sumS / colors.size();
+    color[2] = sumV / colors.size();
     return color;
 }
 
 Color CubeAnalyzer::classifyColor(Vec3b color){
-    if(color[0] >= RED_MIN && color[0] <= RED_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
-			return RED;
-    }else if(color[0] >= ORANGE_MIN && color[0] <= ORANGE_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
-            return ORANGE;
-    }else if(color[0] >= YELLOW_MIN && color[0] <= YELLOW_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
-            return YELLOW;
-    }else if(color[0] >= GREEN_MIN && color[0] <= GREEN_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV) {
-            return GREEN;
-    }else if(color[0] >= BLUE_MIN && color[0] <= BLUE_MAX && color[1] > WHITE_LV && color[2] > BLACK_LV){
-            return BLUE;
-    }else if(color[1] < WHITE_LV && color[2] > BLACK_LV){
-            return WHITE;
+
+    if(colorInBounds(color, RED_MIN, RED_MAX) || colorInBounds(color, RED_2_MIN, RED_2_MAX)){
+        return RED;
+    }else if(colorInBounds(color, ORANGE_MIN, ORANGE_MAX)){
+        return ORANGE;
+    }else if(colorInBounds(color, YELLOW_MIN, YELLOW_MAX)){
+        return YELLOW;
+    }else if(colorInBounds(color, GREEN_MIN, GREEN_MAX)) {
+        return GREEN;
+    }else if(colorInBounds(color, BLUE_MIN, BLUE_MAX)){
+        return BLUE;
+    }else if(isWhite(color)){
+        return WHITE;
     }else{
-            return UNDEF;
-        }
+        return UNDEF;
+    }
 }
 
-void CubeAnalyzer::drawCircles(Mat& mat, Point point, int radius, Color color){
+bool CubeAnalyzer::colorInBounds(Vec3b color, unsigned short min, unsigned short max){
+    unsigned short H,S,V;
+    H = color[0];
+    S = color[1];
+    V = color[2];
+    return (H >= min && H <= max && S > WHITE_LV && V > BLACK_LV);
+}
+
+bool CubeAnalyzer::isWhite(Vec3b color){
+    unsigned short S,V;
+    S = color[1];
+    V = color[2];
+    return S < WHITE_LV && V > BLACK_LV;
+}
+
+
+void CubeAnalyzer::drawCircles(Mat& mat, Point point, Color color){
     switch (color){
     case RED:
-        circle(mat, point, radius, RED_SCALAR, - 1);
+        circle(mat, point, radius, RED_SCALAR, -1);
         break;
     case YELLOW:
         circle(mat, point, radius, YELLOW_SCALAR, - 1);
@@ -128,6 +166,15 @@ void CubeAnalyzer::drawCircles(Mat& mat, Point point, int radius, Color color){
         circle(mat, point, radius, UNDEF_SCALAR, - 1);
         break;
     }
+    circle(mat, point, radius, BORDER_SCALAR);
+}
+
+bool CubeAnalyzer::isPressed(char c){
+    auto key = static_cast<char>(waitKey(5));
+    if (key == c){
+        return true;
+    }
+    return false;
 }
 
 Cube CubeAnalyzer::getCube(){

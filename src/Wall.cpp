@@ -5,6 +5,7 @@
 using namespace std;
 
 Wall::Wall(){
+    locked = false;
     for (size_t cell = 0; cell < numberOfCells; cell++){
         colors[cell] = UNDEF;
     }
@@ -25,13 +26,16 @@ void Wall::setColor(unsigned number, Color color){
     throw runtime_error("Cell index out of bounds!");
 }
 
-void Wall::print(){
-    for (size_t j = 0; j < numberOfCells; j++){
-        if (j % numberOfCellsInRow == 0 && j != 0){
-            cout << endl;
-        }
-        cout << colors[j] <<" ";
-    }
+void Wall::lock(){
+    locked = true;
+}
+
+void Wall::unlock(){
+    locked = false;
+}
+
+bool Wall::isLocked(){
+    return locked;
 }
 
 

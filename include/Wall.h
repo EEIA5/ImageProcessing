@@ -4,10 +4,13 @@
 class Wall
 {
 public:
-	Wall();
-    void print();
+    Wall();
     void setColor(unsigned number, Color color);
     Color getColor(unsigned number);
+    void lock();
+    void unlock();
+    bool isLocked();
 private:
+    bool locked;
     Color colors[numberOfCells];
 };

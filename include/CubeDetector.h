@@ -5,11 +5,12 @@
 #include "opencv2/highgui/highgui.hpp"
 
 using namespace cv;
+using namespace std;
+
 class CubeDetector
 {
 public:
     void findContures();
-    bool isWorking();
     Mat getCube();
     CubeDetector();
     ~CubeDetector();

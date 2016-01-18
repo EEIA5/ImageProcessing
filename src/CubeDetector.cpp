@@ -9,7 +9,7 @@ using namespace std;
 CubeDetector::CubeDetector(){
     tresholdCannyOne = 30;
     tresholdCannyTwo = 30;
-    minArea = 2000;
+    minArea = 1000;
     minSquareSide = 170;
     squareTolerance = 15;
     windowName = "Camera";
@@ -17,22 +17,16 @@ CubeDetector::CubeDetector(){
     videoCapture = new VideoCapture(0);
     if (!videoCapture->isOpened()){
         throw runtime_error("Failed to open a video device!\nInitialization failed!");
-}
+    }
+    videoCapture->set(CV_CAP_PROP_FRAME_WIDTH,1024);
+    videoCapture->set(CV_CAP_PROP_FRAME_HEIGHT,860);
 }
 
-CubeDetector::~CubeDetector() {
+CubeDetector::~CubeDetector(){
     delete videoCapture;
 }
 
-bool CubeDetector::isWorking(){
-	auto key = static_cast<char>(waitKey(5));
-        if (key == 'q'){
-            return false;
-        }
-    return true;
-}
-
-void CubeDetector::findContures() {
+void CubeDetector::findContures(){
     squares.clear();
     vector<vector<Point>> contours;
     vector<Point> approxs;
@@ -42,11 +36,10 @@ void CubeDetector::findContures() {
     if (frame.empty()){
         throw runtime_error("Empty frame!");
     }
-    imshow(windowName, frame);
-
+    medianBlur(frame,frame,11);
     Canny(frame, imageGray, tresholdCannyOne, tresholdCannyTwo);
     findContours(imageGray, contours, RETR_TREE, CHAIN_APPROX_SIMPLE);
-
+    imshow(windowName, frame);
     int area;
     for(unsigned contoure = 0; contoure < contours.size(); contoure++){
         approxPolyDP(Mat(contours[contoure]), approxs, arcLength(Mat(contours[contoure]), true) * 0.02, true);
@@ -58,7 +51,7 @@ void CubeDetector::findContures() {
     }
 }
 
-Mat CubeDetector::getCube() {
+Mat CubeDetector::getCube(){
 	auto imageSize = frame.size();
     unsigned minY = imageSize.height, minX = imageSize.width;
     unsigned maxY = 0, maxX = 0;

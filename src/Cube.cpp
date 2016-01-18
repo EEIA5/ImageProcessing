@@ -6,11 +6,16 @@
 
 using namespace std;
 
-void Cube::print(){
-    for (size_t i = 0; i < numberOfWalls; i++){
-        cout << endl << endl << "Side: " << i << endl << endl;
-        getWall(i).print();
-    }
+void Cube::lockWall(unsigned w){
+    walls[w].lock();
+}
+
+void Cube::unlockWall(unsigned w){
+    walls[w].unlock();
+}
+
+bool Cube::isWallLocked(unsigned w){
+    return walls[w].isLocked();
 }
 
 Wall Cube::getWall(unsigned w){
@@ -38,7 +43,7 @@ Color Cube::getCell(unsigned w, unsigned c){
 bool Cube::isComplete(){
     for (size_t wall = 0; wall < numberOfWalls; wall++){
         for (size_t cell = 0; cell < numberOfCells; cell++){
-            if (walls[wall].getColor(cell) == UNDEF){
+            if (walls[wall].getColor(cell) == UNDEF || !walls[wall].isLocked()){
                 return false;
             }
         }
