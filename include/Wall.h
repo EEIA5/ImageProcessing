@@ -9,7 +9,7 @@ public:
     Color getColor(unsigned number);
     void lock();
     void unlock();
-    bool isLocked();
+    bool isLocked() const;
 private:
     bool locked;
     Color colors[numberOfCells];

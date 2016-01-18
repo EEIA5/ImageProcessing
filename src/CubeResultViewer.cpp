@@ -1,8 +1,6 @@
 #include "CubeResultViewer.h"
 #include <stdexcept>
 
-using namespace cv;
-
 CubeResultViewer::CubeResultViewer(string windowName) : CubePrinter(windowName){
     CubeAlgorithmClass cubeAlgorithmClass;
     cubeView = cubeAlgorithmClass.getCubes();

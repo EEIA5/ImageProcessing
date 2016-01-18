@@ -15,8 +15,8 @@ public:
     ~CubePrinter();
     void print(Cube* cube);
     void setCube(Cube* cube);
-    Cube* getCube();
-    Mat* getView();
+    Cube* getCube() const;
+    Mat* getView() const;
 
 protected:
     unsigned startX, startY;
@@ -34,8 +34,8 @@ private:
     unsigned short spaceBetweenSquares;
     void drawWall(unsigned x, unsigned y, unsigned w);
     void drawSquare(unsigned x, unsigned y, Color color);
-    Scalar getColorScalar(Color color);
-    void drawWallNames();
+	static Scalar getColorScalar(Color color);
+    void drawWallNames() const;
 };
 
 

@@ -7,8 +7,6 @@
 #include "opencv2/highgui/highgui.hpp"
 
 
-using namespace cv;
-
 CubeAnalyzer::CubeAnalyzer(){
     radius = 10;
     windowName = "Cube";
@@ -53,12 +51,12 @@ void CubeAnalyzer::analyze(Mat cubeMat){
     }
 }
 
-Color CubeAnalyzer::detectSide(){
+Color CubeAnalyzer::detectSide() const {
     Size cubeSize = cubeMat.size();
     return reconizeColor(cubeSize.width / 2, cubeSize.height / 2);
 }
 
-Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
+Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y) const {
     vector<Vec3b> colors;
     Size cubeSize = cubeMat.size();
     Color color = UNDEF;
@@ -82,11 +80,11 @@ Color CubeAnalyzer::reconizeColor(unsigned x ,unsigned y){
     return color;
 }
 
-bool CubeAnalyzer::isInMatrixBounds(unsigned x, unsigned y, unsigned width, unsigned height){
+bool CubeAnalyzer::isInMatrixBounds(unsigned x, unsigned y, unsigned width, unsigned height) const {
     return (x >= radius && y >= radius && x + radius < width && y + radius < height) ;
 }
 
-Vec3b CubeAnalyzer::getRawColor(unsigned x, unsigned y){
+Vec3b CubeAnalyzer::getRawColor(unsigned x, unsigned y) const {
     Mat HSV;
     Mat BGR = cubeMat(Rect(x, y, 1, 1));
     cvtColor(BGR, HSV, CV_BGR2HSV);
@@ -107,23 +105,27 @@ Vec3b CubeAnalyzer::avgColors(vector<Vec3b> colors){
     return color;
 }
 
-Color CubeAnalyzer::classifyColor(Vec3b color){
+Color CubeAnalyzer::classifyColor(Vec3b color) {
 
-    if(colorInBounds(color, RED_MIN, RED_MAX) || colorInBounds(color, RED_2_MIN, RED_2_MAX)){
+	if(colorInBounds(color, RED_MIN, RED_MAX) || colorInBounds(color, RED_2_MIN, RED_2_MAX)){
         return RED;
-    }else if(colorInBounds(color, ORANGE_MIN, ORANGE_MAX)){
-        return ORANGE;
-    }else if(colorInBounds(color, YELLOW_MIN, YELLOW_MAX)){
-        return YELLOW;
-    }else if(colorInBounds(color, GREEN_MIN, GREEN_MAX)) {
-        return GREEN;
-    }else if(colorInBounds(color, BLUE_MIN, BLUE_MAX)){
-        return BLUE;
-    }else if(isWhite(color)){
-        return WHITE;
-    }else{
-        return UNDEF;
     }
+	if(colorInBounds(color, ORANGE_MIN, ORANGE_MAX)){
+		return ORANGE;
+	}
+	if(colorInBounds(color, YELLOW_MIN, YELLOW_MAX)){
+		return YELLOW;
+	}
+	if(colorInBounds(color, GREEN_MIN, GREEN_MAX)) {
+		return GREEN;
+	}
+	if(colorInBounds(color, BLUE_MIN, BLUE_MAX)){
+		return BLUE;
+	}
+	if(isWhite(color)){
+		return WHITE;
+	}
+	return UNDEF;
 }
 
 bool CubeAnalyzer::colorInBounds(Vec3b color, unsigned short min, unsigned short max){
@@ -142,7 +144,7 @@ bool CubeAnalyzer::isWhite(Vec3b color){
 }
 
 
-void CubeAnalyzer::drawCircles(Mat& mat, Point point, Color color){
+void CubeAnalyzer::drawCircles(Mat& mat, Point point, Color color) const {
     switch (color){
     case RED:
         circle(mat, point, radius, RED_SCALAR, -1);
@@ -177,6 +179,6 @@ bool CubeAnalyzer::isPressed(char c){
     return false;
 }
 
-Cube CubeAnalyzer::getCube(){
+Cube CubeAnalyzer::getCube() const {
     return cube;
 }

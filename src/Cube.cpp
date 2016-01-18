@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdexcept>
 
-using namespace std;
 
 void Cube::lockWall(unsigned w){
     walls[w].lock();
@@ -22,7 +21,7 @@ Wall Cube::getWall(unsigned w){
     if (w < numberOfWalls){
         return walls[w];
     }
-    throw runtime_error("Wall index out of bounds!");
+    throw std::runtime_error("Wall index out of bounds!");
 }
 
 void Cube::setCell(unsigned w, unsigned c, Color color){
@@ -30,14 +29,14 @@ void Cube::setCell(unsigned w, unsigned c, Color color){
         walls[w].setColor(c, color);
         return;
     }
-    throw runtime_error("Wall or cell index out of bounds!");
+    throw std::runtime_error("Wall or cell index out of bounds!");
 }
 
 Color Cube::getCell(unsigned w, unsigned c){
     if (w < numberOfWalls && c < numberOfCells){
         return walls[w].getColor(c);
     }
-    throw runtime_error("Wall or cell index out of bounds!");
+    throw std::runtime_error("Wall or cell index out of bounds!");
 }
 
 bool Cube::isComplete(){

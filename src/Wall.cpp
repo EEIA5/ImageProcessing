@@ -1,8 +1,5 @@
 #include "Wall.h"
 #include <stdexcept>
-#include <iostream>
-
-using namespace std;
 
 Wall::Wall(){
     locked = false;
@@ -15,7 +12,7 @@ Color Wall::getColor(unsigned number){
     if (number < numberOfCells){
         return colors[number];
     }
-    throw runtime_error("Cell index out of bounds!");
+    throw std::runtime_error("Cell index out of bounds!");
 }
 
 void Wall::setColor(unsigned number, Color color){
@@ -23,7 +20,7 @@ void Wall::setColor(unsigned number, Color color){
         colors[number] = color;
         return;
     }
-    throw runtime_error("Cell index out of bounds!");
+    throw std::runtime_error("Cell index out of bounds!");
 }
 
 void Wall::lock(){
@@ -34,7 +31,7 @@ void Wall::unlock(){
     locked = false;
 }
 
-bool Wall::isLocked(){
+bool Wall::isLocked() const {
     return locked;
 }
 
